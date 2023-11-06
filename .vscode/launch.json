@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "Launch Frontend",
+            "configurations": [
+                "Lab.MicroToDo.Frontend",
+                "Lab.MicroToDo.Frontend.Api"
+            ],
+            "stopAll": true
+        }
+    ],
+    "configurations": [
+        {
+            "name": "Lab.MicroToDo.Frontend",
+            "type": "blazorwasm",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/application/frontend/src/Lab.MicroToDo.Frontend",
+            "browser": "chrome",
+            "browserConfig": {
+            
+            }
+        },
+        {
+            "name": "Lab.MicroToDo.Frontend.Api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Lab.MicroToDo.Frontend.Api",
+            "program": "${workspaceFolder}/application/frontend/src/Lab.MicroToDo.Frontend.Api/bin/Debug/net7.0/Lab.MicroToDo.Frontend.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/application/frontend/src/Lab.MicroToDo.Frontend.Api",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        }
+
+    ]
+}

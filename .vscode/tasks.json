@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Lab.MicroToDo.Frontend.Api",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
+				"build",
+				"${workspaceFolder}/application/frontend/src/Lab.MicroToDo.Frontend.Api/Lab.MicroToDo.Frontend.Api.csproj"
+			],
+			"problemMatcher": "$msCompile"
+		}
+	]
+}

@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "application", "application", "{A8ECB305-4793-46EB-95FC-9BB26DD77B33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frontend", "frontend", "{8F447BC7-D161-4CBF-9B45-241512A22BF1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{928785B1-241E-46A5-AB12-460F8DC82A9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.MicroToDo.Frontend", "application\frontend\src\Lab.MicroToDo.Frontend\Lab.MicroToDo.Frontend.csproj", "{34BD6A29-C1EC-4063-9EF2-7EA4959DDB91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.MicroToDo.Frontend.Api", "application\frontend\src\Lab.MicroToDo.Frontend.Api\Lab.MicroToDo.Frontend.Api.csproj", "{9FC41975-F7E3-4ED9-AF27-72BD2681AB26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.MicroToDo.Frontend.Contracts", "application\frontend\src\Lab.MicroToDo.Frontend.Contracts\Lab.MicroToDo.Frontend.Contracts.csproj", "{06D7DF6B-4036-425D-8926-1A8DF8F88A1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34BD6A29-C1EC-4063-9EF2-7EA4959DDB91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34BD6A29-C1EC-4063-9EF2-7EA4959DDB91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34BD6A29-C1EC-4063-9EF2-7EA4959DDB91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34BD6A29-C1EC-4063-9EF2-7EA4959DDB91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FC41975-F7E3-4ED9-AF27-72BD2681AB26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FC41975-F7E3-4ED9-AF27-72BD2681AB26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FC41975-F7E3-4ED9-AF27-72BD2681AB26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FC41975-F7E3-4ED9-AF27-72BD2681AB26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06D7DF6B-4036-425D-8926-1A8DF8F88A1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06D7DF6B-4036-425D-8926-1A8DF8F88A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06D7DF6B-4036-425D-8926-1A8DF8F88A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06D7DF6B-4036-425D-8926-1A8DF8F88A1C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F447BC7-D161-4CBF-9B45-241512A22BF1} = {A8ECB305-4793-46EB-95FC-9BB26DD77B33}
+		{928785B1-241E-46A5-AB12-460F8DC82A9D} = {8F447BC7-D161-4CBF-9B45-241512A22BF1}
+		{34BD6A29-C1EC-4063-9EF2-7EA4959DDB91} = {928785B1-241E-46A5-AB12-460F8DC82A9D}
+		{9FC41975-F7E3-4ED9-AF27-72BD2681AB26} = {928785B1-241E-46A5-AB12-460F8DC82A9D}
+		{06D7DF6B-4036-425D-8926-1A8DF8F88A1C} = {928785B1-241E-46A5-AB12-460F8DC82A9D}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,47 @@
+@page "/todos"
+@using Contracts.Todos;
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@inject IConfiguration Configuration
+@inject IWebAssemblyHostEnvironment HostEnvironment
+
+<h1>Todo Liste</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Is Done</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todo in todolist.Todos)
+        {
+            <tr>
+                <td>@todo.Title</td>
+                <td>@todo.Description</td>
+                <td>@todo.IsCompleted</td>
+            </tr>
+        }
+    </tbody>
+
+    <button @onclick="CreateTodo">Neues Todo</button>
+
+</table>
+
+@code {
+    private TodoListViewModel todolist = new TodoListViewModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        todolist = await Http.GetFromJsonAsync<TodoListViewModel>("http://localhost:5292/todos");
+    }
+
+    private void CreateTodo()
+    {
+        NavigationManager.NavigateTo("todos/create");
+    }
+}
