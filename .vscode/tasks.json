@@ -10,6 +10,16 @@
 				"${workspaceFolder}/application/frontend/src/Lab.MicroToDo.Frontend.Api/Lab.MicroToDo.Frontend.Api.csproj"
 			],
 			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "Lab.MicroToDo.Todos.Api",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
+				"build",
+				"${workspaceFolder}/application/todos/src/Lab.MicroToDo.Todos.Api/Lab.MicroToDo.Todos.Api.csproj"
+			],
+			"problemMatcher": "$msCompile"
 		}
 	]
 }

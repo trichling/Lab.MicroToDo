@@ -1,25 +1,22 @@
 using Lab.MicroToDo.Frontend.Contracts.Todos;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Lab.MicroToDo.Frontend.Api.Todos;
 
 public static class GetAllTodos
 {
 
-    public static async Task<IResult> Handle()
+    public static async Task<IResult> Handle([FromServices] IHttpClientFactory httpClientFactory)
     {
-       
-        return Results.Ok(new TodoListViewModel() {
-            Todos = new List<TodoViewModel>() 
-            {
-                new TodoViewModel() { Id = Guid.NewGuid(), Title = "Todo 1", Description = "Description 1", IsCompleted = false },
-                new TodoViewModel() { Id = Guid.NewGuid(), Title = "Todo 2", Description = "Description 2", IsCompleted = false },
-                new TodoViewModel() { Id = Guid.NewGuid(), Title = "Todo 3", Description = "Description 3", IsCompleted = false },
-                new TodoViewModel() { Id = Guid.NewGuid(), Title = "Todo 4", Description = "Description 4", IsCompleted = false },
-                new TodoViewModel() { Id = Guid.NewGuid(), Title = "Todo 5", Description = "Description 5", IsCompleted = false },
-                new TodoViewModel() { Id = Guid.NewGuid(), Title = "Todo 6", Description = "Description 6", IsCompleted = false }
-            }
-        });
+        var httpClient = httpClientFactory.CreateClient("todos-api");
+        var response = await httpClient.GetAsync("/todos");
+        if (!response.IsSuccessStatusCode)
+        {
+            return Results.Problem(response.ReasonPhrase);
+        }
 
-        // return Results.NoContent();
+        var todos = await response.Content.ReadFromJsonAsync<TodoListViewModel>();
+        return Results.Ok(todos);
+       
     }
 }

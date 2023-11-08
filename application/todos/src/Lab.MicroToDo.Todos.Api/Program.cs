@@ -1,25 +1,27 @@
+using Lab.MicroToDo.Todos.Api.Todos;
+using Lab.MicroToDo.Todos.Data.Todos;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.RegisterSerivcesForTodosModule(builder.Configuration);
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+Console.WriteLine($"{app.Environment.EnvironmentName}: {app.Configuration.GetConnectionString("TodosDbConnectionString")}");
+
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var todosContext = scope.ServiceProvider.GetRequiredService<TodosContext>();
+    todosContext.Database.Migrate();
 }
 
-app.UseHttpsRedirection();
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.UseAuthorization();
-
-app.MapControllers();
+app.MapEndpointsForTodosModule();
 
 app.Run();

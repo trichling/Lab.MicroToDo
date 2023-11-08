@@ -5,10 +5,11 @@
     "version": "0.2.0",
     "compounds": [
         {
-            "name": "Launch Frontend",
+            "name": "Launch All",
             "configurations": [
                 "Lab.MicroToDo.Frontend",
-                "Lab.MicroToDo.Frontend.Api"
+                "Lab.MicroToDo.Frontend.Api",
+                "Lab.MicroToDo.Todos.Api"
             ],
             "stopAll": true
         }
@@ -32,6 +33,17 @@
             "program": "${workspaceFolder}/application/frontend/src/Lab.MicroToDo.Frontend.Api/bin/Debug/net7.0/Lab.MicroToDo.Frontend.Api.dll",
             "args": [],
             "cwd": "${workspaceFolder}/application/frontend/src/Lab.MicroToDo.Frontend.Api",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": "Lab.MicroToDo.Todos.Api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Lab.MicroToDo.Todos.Api",
+            "program": "${workspaceFolder}/application/todos/src/Lab.MicroToDo.Todos.Api/bin/Debug/net7.0/Lab.MicroToDo.Todos.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/application/todos/src/Lab.MicroToDo.Todos.Api",
             "stopAtEntry": false,
             "console": "internalConsole"
         }

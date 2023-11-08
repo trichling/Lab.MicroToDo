@@ -2,7 +2,6 @@ using Lab.MicroToDo.Frontend.Api.Todos;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>

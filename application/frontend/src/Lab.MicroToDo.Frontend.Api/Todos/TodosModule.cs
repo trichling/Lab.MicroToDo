@@ -1,9 +1,14 @@
+using Lab.MicroToDo.Frontend.Api.Infrastructure;
+
 namespace Lab.MicroToDo.Frontend.Api.Todos
 {
     public static class TodosModule 
     {
         public static IServiceCollection RegisterSerivcesForTodosModule(this IServiceCollection services, IConfiguration configuration)
         {
+            var todosApiBaseUrl = configuration["Dependencies:APIs:TodosApiBaseUrl"];
+            services.AddHttpClientWithBaseUrl("todos-api", todosApiBaseUrl);
+            
             return services;
         }
 
