@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# Make sure line endings are "LF" (Linux) and not "CRLF" (windows). Otherwise you get the error
+# > env: can't execute 'sh
+# > ': No such file or directory
+
 set -eu
 
 function join_by { local IFS="$1"; shift; echo "$*"; }

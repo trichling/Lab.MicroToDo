@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microtodo-frontend
+
+spec:
+
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: microtodo-frontend
+          image: thinkexception.azurecr.io/microtodo-frontend:dev
+      
+          env:
+          - name: BLAZOR_ENVIRONMENT
+            value: "Development"

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microtodo-frontend
+
+spec:
+  selector:
+    matchLabels:
+      app: microtodo-frontend
+  
+  replicas: 3
+
+  template:
+    metadata:
+      labels:
+        app: microtodo-frontend
+    
+    spec:
+      containers:
+      - name: microtodo-frontend
+        image: thinkexception.azurecr.io/microtodo-frontend:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "16Mi"
+            cpu: "50m"
+            
+        ports:
+        - containerPort: 80
+
+        env:
+          - name: BLAZOR_ENVIRONMENT
+            value: "Production"
