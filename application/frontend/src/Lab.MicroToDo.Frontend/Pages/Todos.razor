@@ -37,7 +37,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        todolist = await Http.GetFromJsonAsync<TodoListViewModel>("http://localhost:5292/todos");
+        var baseUrl = Configuration["Dependencies:APIs:TodosApiBaseUrl"];
+        todolist = await Http.GetFromJsonAsync<TodoListViewModel>(baseUrl);
     }
 
     private void CreateTodo()
