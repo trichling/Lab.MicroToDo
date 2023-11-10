@@ -12,7 +12,15 @@
                 "Lab.MicroToDo.Todos.Api"
             ],
             "stopAll": true
-        }
+        },
+        {
+            "name": "Launch Frontend",
+            "configurations": [
+                "Lab.MicroToDo.Frontend",
+                "Lab.MicroToDo.Frontend.Api",
+            ],
+            "stopAll": true
+        },
     ],
     "configurations": [
         {

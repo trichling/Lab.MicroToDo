@@ -4,6 +4,7 @@
 
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
+@inject IConfiguration Configuration
 
 
 <h1>Neues Todo</h1>
@@ -31,7 +32,8 @@
 
     private async Task CreateTodo()
     {
-        var response = await Http.PostAsJsonAsync("http://localhost:5292/todos", newTodo);
+        var baseUrl = Configuration["Dependencies:APIs:TodosApiBaseUrl"];
+        var response = await Http.PostAsJsonAsync(baseUrl, newTodo);
         if (response.IsSuccessStatusCode)
         {
             NavigationManager.NavigateTo("todos");
