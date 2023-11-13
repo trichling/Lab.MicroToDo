@@ -15,4 +15,6 @@ spec:
           env:
             - name: "ASPNETCORE_ENVIRONMENT"
               value: "Development"
+            - name: "FeatureFlags__UseTodosService"
+              value: "false"
             

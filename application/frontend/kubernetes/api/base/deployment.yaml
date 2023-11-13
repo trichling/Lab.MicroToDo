@@ -24,10 +24,15 @@ spec:
         env:
           - name: "ASPNETCORE_ENVIRONMENT"
             value: "Production"
+          - name: "FeatureFlags__UseTodosService"
+            value: "true"
+          - name: "Dependencies__Apis__TodosApiBaseUrl"
+            value: "http://microtodo-todos-api:80"
 
         resources:
           limits:
             memory: "64Mi"
             cpu: "50m"
+            
         ports:
         - containerPort: 80

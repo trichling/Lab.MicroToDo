@@ -55,6 +55,8 @@ az aks create `
     --node-vm-size "Standard_B2s" `
     --network-plugin "kubenet" `
     --vnet-subnet-id $subnetId `
+    --auto-upgrade-channel "stable" `
     --enable-managed-identity `
     --assign-identity $identityId `
+    --assign-kubelet-identity $identityId `
     --attach-acr $containerRegistryName
