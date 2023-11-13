@@ -20,6 +20,10 @@ helm install nginx-ingress ingress-nginx/ingress-nginx `
     --set controller.nodeSelector."kubernetes\.io/os"=linux `
     --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux `
     --set controller.admissionWebhooks.patch.nodeSelector."kubernetes\.io/os"=linux
+    # private load balancer
+    # --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-resource-group"="$LOADBALANCER_RESOURCE_GROUP" `
+    # --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-internal"="true" `
+    # --set controller.service.loadBalancerIP=$LoadBalancerIp
 
 kubectl apply -f ingress-class.yaml
 
