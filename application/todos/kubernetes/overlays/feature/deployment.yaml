@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microtodo-todos-api
+
+spec:
+ 
+  replicas: 1
+
+  template:
+    
+    spec:
+      containers:
+      - name: microtodo-todos-api
+        image: thinkexception.azurecr.io/microtodo-todosapi:dev
+        
+        env:
+          - name: "ASPNETCORE_ENVIRONMENT"
+            value: "Development"
+         
+        
