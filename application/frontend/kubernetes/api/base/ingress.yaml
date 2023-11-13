@@ -15,7 +15,10 @@ spec:
   rules:
   - http:
       paths:
-      - pathType: ImplementationSpecific # pathType: Prefix creates a warning - https://github.com/microsoft/contosotraders-cloudtesting/issues/257 and https://github.com/kubernetes/ingress-nginx/issues/10200
+      # pathType: Prefix creates a warning - 
+      # https://github.com/microsoft/contosotraders-cloudtesting/issues/257 and 
+      # https://github.com/kubernetes/ingress-nginx/issues/10200
+      - pathType: ImplementationSpecific 
         path: "/api(/|$)(.*)"
         backend:
           service:
