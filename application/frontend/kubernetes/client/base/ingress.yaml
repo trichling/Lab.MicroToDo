@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: microtodo-frontend
+  labels:
+    name: microtodo-frontend
+spec:
+  ingressClassName: nginx
+  
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: microtodo-frontend
+            port: 
+              number: 80

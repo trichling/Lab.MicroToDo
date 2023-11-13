@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: microtodo-frontend-api
+  labels:
+    name: microtodo-frontend-api
+
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+
+spec:
+  ingressClassName: nginx
+
+  rules:
+  - http:
+      paths:
+      - pathType: ImplementationSpecific # pathType: Prefix creates a warning - https://github.com/microsoft/contosotraders-cloudtesting/issues/257 and https://github.com/kubernetes/ingress-nginx/issues/10200
+        path: "/api(/|$)(.*)"
+        backend:
+          service:
+            name: microtodo-frontend-api
+            port: 
+              number: 80
