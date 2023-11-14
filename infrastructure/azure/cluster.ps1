@@ -1,6 +1,6 @@
 param (
     [Parameter(Mandatory)] [string] $Environment,
-    [Parameter] [string] $Version
+    [Parameter(Mandatory)] [string] $Version
 )
 
 # define names
@@ -59,4 +59,6 @@ az aks create `
     --enable-managed-identity `
     --assign-identity $identityId `
     --assign-kubelet-identity $identityId `
-    --attach-acr $containerRegistryName
+    --attach-acr $containerRegistryName `
+    --enable-oidc-issuer `
+    --enable-workload-identity `

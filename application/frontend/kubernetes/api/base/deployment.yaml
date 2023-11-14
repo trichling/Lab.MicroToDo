@@ -14,8 +14,12 @@ spec:
     metadata:
       labels:
         app: microtodo-frontend-api
+        azure.workload.identity/use: "true"
+
     
     spec:
+      serviceAccountName: api
+
       containers:
       - name: microtodo-frontend-api
         image: thinkexception.azurecr.io/microtodo-frontendapi:latest
@@ -24,6 +28,8 @@ spec:
         env:
           - name: "ASPNETCORE_ENVIRONMENT"
             value: "Production"
+          - name: "KEYVAULT_URL"
+            value: "https://kv-microtodo.vault.azure.net/"
           - name: "FeatureFlags__UseTodosService"
             value: "true"
           - name: "Dependencies__Apis__TodosApiBaseUrl"
