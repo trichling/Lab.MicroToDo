@@ -23,7 +23,13 @@ spec:
           - name: "ASPNETCORE_ENVIRONMENT"
             value: "Production"
           - name: "ConnectionStrings__TodosDbConnectionString"
-            value: Server=mssql;Database={0};User Id=sa;Password=1stChangeIt!;MultipleActiveResultSets=true;Encrypt=False;TrustServerCertificate=False
+            value: Server=mssql;Database={0};User Id=sa;Password={1};MultipleActiveResultSets=true;Encrypt=False;TrustServerCertificate=False
+          - name: "Secrets__TodosDbPassword"
+            valueFrom:
+              secretKeyRef:
+                name: mssql-sapassword  
+                key: SA_PASSWORD
+                
         resources:
           limits:
             memory: "64Mi"
