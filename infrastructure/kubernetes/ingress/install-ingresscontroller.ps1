@@ -3,6 +3,8 @@ param (
     [Parameter] [string] $Version
 )
 
+$prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
+
 $location = "westeurope"
 $application = "microtodo"
 $resourceGroupName = "rg-$application-$Environment"
@@ -30,3 +32,5 @@ kubectl apply -f ingress-class.yaml
 # the former command creates an public ip address, which we need to query to set the dns label
 $ingressIpName=$(az network public-ip list -g  $mcResourceGroupName  --query "[?tags.\""k8s-azure-service\""=='ingress-nginx/nginx-ingress-ingress-nginx-controller'].name | [0]")  
 az network public-ip update -g $mcResourceGroupName -n $ingressIpName --dns-name $dnsLabel 
+
+$prevPwd | Set-Location
