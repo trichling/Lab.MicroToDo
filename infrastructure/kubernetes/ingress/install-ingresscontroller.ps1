@@ -15,7 +15,8 @@ $dnsLabel = "$application-$Environment-$Version"
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 
-kubectl create namespace ingress-nginx
+kubectl create namespace ingress-nginx --dry-run=client -o yaml | kubectl apply -f -
+
 helm install nginx-ingress ingress-nginx/ingress-nginx `
     --namespace ingress-nginx `
     --set controller.replicaCount=3 `
