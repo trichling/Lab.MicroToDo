@@ -8,7 +8,8 @@ public static class TodosModule
     public static IServiceCollection RegisterSerivcesForTodosModule(this IServiceCollection services, IConfiguration configuration)
     {
         var todosDbConnectionString = configuration.GetConnectionString("TodosDbConnectionString");
-        todosDbConnectionString = string.Format(todosDbConnectionString, "todosDb");
+        var todosDbPassword = configuration["Secrets:TodosDbPassword"];
+        todosDbConnectionString = string.Format(todosDbConnectionString, "todosDb", todosDbPassword);
         services.AddDbContext<TodosContext>(options =>
         {
             options.UseSqlServer(todosDbConnectionString);
