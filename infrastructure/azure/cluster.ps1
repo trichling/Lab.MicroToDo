@@ -1,6 +1,6 @@
 param (
     [Parameter(Mandatory)] [string] $Environment,
-    [Parameter] [string] $Version
+    [Parameter(Mandatory)] [string] $Version
 )
 
 # define names
