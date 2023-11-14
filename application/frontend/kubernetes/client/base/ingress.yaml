@@ -4,6 +4,7 @@ metadata:
   name: microtodo-frontend
   labels:
     name: microtodo-frontend
+    
 spec:
   ingressClassName: nginx
   
