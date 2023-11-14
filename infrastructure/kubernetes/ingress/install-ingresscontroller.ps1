@@ -28,6 +28,7 @@ helm install nginx-ingress ingress-nginx/ingress-nginx `
     # --set controller.service.loadBalancerIP=$LoadBalancerIp
 
 kubectl apply -f ingress-class.yaml
+kubectl apply -f configmap-ingress-nginx-headers.yaml
 
 # the former command creates an public ip address, which we need to query to set the dns label
 $ingressIpName=$(az network public-ip list -g  $mcResourceGroupName  --query "[?tags.\""k8s-azure-service\""=='ingress-nginx/nginx-ingress-ingress-nginx-controller'].name | [0]")  
