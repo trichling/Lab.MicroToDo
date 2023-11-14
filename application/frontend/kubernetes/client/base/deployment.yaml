@@ -31,3 +31,5 @@ spec:
         env:
           - name: BLAZOR_ENVIRONMENT
             value: "Production"
+          - name: Dependencies__APIs__TodosApiBaseUrl
+            value: http://microtodo.westeurope.cloudapp.azure.com/api
