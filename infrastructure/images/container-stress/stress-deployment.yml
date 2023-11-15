@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: container-stress
-        image: apetitoebusinesssolutions.azurecr.io/container-stress:latest
+        image: thinkexception.azurecr.io/container-stress:latest
         command: ["stress", "--verbose", "--vm", "1", "--vm-bytes", "5G", "--vm-keep", "--cpu", "3"]
         # command: ["stress", "--verbose", "--cpu", "1"]
 
