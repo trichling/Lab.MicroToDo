@@ -1,3 +1,5 @@
+# https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
+
 # watch the hpa / deployment
 kubectl get hpa microtodo-todos-api --watch
 kubectl get deployment microtodo-todos-api
