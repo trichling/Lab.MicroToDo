@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+
+  name: pumba
+spec:
+  selector:
+    matchLabels:
+      app: pumba
+  template:
+    metadata:
+      labels:
+        app: pumba
+        com.gaiaadm.pumba: "true" # prevent pumba from killing itself
+      name: pumba
+    spec:
+      containers:
+      # randomly pause containers in Pod named 'test-1' every minute for 30 sec
+      - image: gaiaadm/pumba
+        imagePullPolicy: Always
+        name: pumba-stress
+        args:
+          - --log-level
+          - debug
+          - --label
+          - app=apetito-customerprices-api
+          - --interval
+          - 2m
+          - stress
+          - --duration 
+          - 1m
+      
+        resources:
+          requests:
+            cpu: 10m
+            memory: 5M
+          limits:
+            cpu: 100m
+            memory: 20M
+        volumeMounts:
+          - name: dockersocket
+            mountPath: /run/containerd/containerd.sock
+      # limit to specific k8s nodes
+      # EKS node group
+      # nodeSelector:
+      #     alpha.eksctl.io/nodegroup-name=my-node-group
+      # GKE node pool
+      # nodeSelector:
+      #     cloud.google.com/gke-nodepool=node-pool
+      volumes:
+        - hostPath:
+            path: /run/containerd/containerd.sock
+          name: dockersocket

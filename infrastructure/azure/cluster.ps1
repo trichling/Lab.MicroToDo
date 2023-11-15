@@ -62,3 +62,7 @@ az aks create `
     --attach-acr $containerRegistryName `
     --enable-oidc-issuer `
     --enable-workload-identity `
+    --enable-cluster-autoscaler `
+    --min-count 1 `
+    --max-count 3 `
+    --cluster-autoscaler-profile scan-interval=30s

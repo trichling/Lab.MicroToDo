@@ -1,0 +1,33 @@
+# https://github.com/mohsenmottaghi/container-stress/tree/master
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: container-stress
+  labels:
+    app: stress
+spec:
+  selector:
+    matchLabels:
+      stress-area: here
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        stress-area: here
+    spec:
+      containers:
+      - name: container-stress
+        image: apetitoebusinesssolutions.azurecr.io/container-stress:latest
+        command: ["stress", "--verbose", "--vm", "1", "--vm-bytes", "5G", "--vm-keep", "--cpu", "3"]
+        # command: ["stress", "--verbose", "--cpu", "1"]
+
+        resources:
+          limits:
+            memory: "6Gi"
+            cpu: "2500"
+          requests:
+            memory: "1024Mi"
+            cpu: "1000m"

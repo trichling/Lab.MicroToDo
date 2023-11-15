@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  stress:
+    image: mohsenmottaghi/container-stress
+    command: stress --verbose --vm 1 --vm-bytes 512M
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '500m'
+          memory: 750M
+      #   reservations:
+      #     cpus: '0.25'
+      #     memory: 200M
+      restart_policy:
+        condition: on-failure
+        delay: 2s
