@@ -1,0 +1,18 @@
+kind: StressChaos
+apiVersion: chaos-mesh.org/v1alpha1
+metadata:
+  namespace: default
+  name: memory-stress-microtodo-frontend-api
+spec:
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      app: microtodo-frontend-api
+  mode: all
+  stressors:
+    memory:
+      workers: 4
+      size: '1G'
+
+  duration: 5m

@@ -1,0 +1,19 @@
+kind: StressChaos
+apiVersion: chaos-mesh.org/v1alpha1
+metadata:
+  namespace: default
+  name: memory-stress-busybox
+spec:
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      app: busybox
+  mode: all
+  stressors:
+    memory:
+      workers: 4
+      size: '200MiB'
+      options: ['']
+
+  duration: 5m

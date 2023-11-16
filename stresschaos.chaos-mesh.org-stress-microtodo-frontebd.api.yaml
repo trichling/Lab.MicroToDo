@@ -1,0 +1,55 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: StressChaos
+metadata:
+  creationTimestamp: "2023-11-16T09:13:02Z"
+  finalizers:
+  - chaos-mesh/records
+  generation: 5
+  name: stress-microtodo-frontebd.api
+  namespace: default
+  resourceVersion: "381290"
+  uid: bd6f5d8b-93f4-4d9b-8422-b5d20cd4e28c
+spec:
+  duration: 15m
+  mode: all
+  selector:
+    labelSelectors:
+      app: microtodo-frontend-api
+    namespaces:
+    - default
+  stressors:
+    cpu:
+      load: 70
+      workers: 4
+    memory:
+      oomScoreAdj: 0
+      size: "256MB"
+      workers: 4
+status:
+  conditions:
+  - status: "True"
+    type: Selected
+  - status: "True"
+    type: AllInjected
+  - status: "False"
+    type: AllRecovered
+  - status: "False"
+    type: Paused
+  experiment:
+    containerRecords:
+    - events:
+      - operation: Apply
+        timestamp: "2023-11-16T09:13:02Z"
+        type: Succeeded
+      id: default/microtodo-frontend-api-dd5d58464-gpwzr/microtodo-frontend-api
+      injectedCount: 1
+      phase: Injected
+      recoveredCount: 0
+      selectorKey: .
+    desiredPhase: Run
+  instances:
+    default/microtodo-frontend-api-dd5d58464-gpwzr/microtodo-frontend-api:
+      memoryStartTime: "2023-11-16T09:13:02Z"
+      memoryUid: "1483558"
+      startTime: "2023-11-16T09:13:02Z"
+      uid: "1483554"

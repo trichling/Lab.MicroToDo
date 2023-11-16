@@ -1,0 +1,22 @@
+# kubectl run -i --tty --rm debug --image=busybox --restart=Never -- sh
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  labels: 
+    app: busybox
+spec:
+  containers:
+  - image: busybox:latest
+    imagePullPolicy: Always
+    name: busybox
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "100m"
+
+    command:
+      - /bin/sh
+      - -c
+      - "tail -f /dev/null"
