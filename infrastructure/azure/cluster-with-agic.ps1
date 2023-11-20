@@ -71,16 +71,16 @@ az network vnet subnet create `
     --address-prefixes $applicationGatewaySubnetAddressSpace 
 
 # add aks route table to application gateway subnet (needed if you want to use kubenet)
-$aksRouteTableId = az network route-table list `
-    -g $mcResourceGroupName `
-    --query "[?contains(name, 'MC_')].id" `
-    -o tsv
+# $aksRouteTableId = az network route-table list `
+#     -g $mcResourceGroupName `
+#     --query "[?contains(name, 'MC_')].id" `
+#     -o tsv
 
-az network vnet subnet update `
-    --name $applicationGatewaySubnetName `
-    --resource-group $resourceGroupName `
-    --vnet-name $vnetName `
-    --route-table $aksRouteTableId
+# az network vnet subnet update `
+#     --name $applicationGatewaySubnetName `
+#     --resource-group $resourceGroupName `
+#     --vnet-name $vnetName `
+#     --route-table $aksRouteTableId
 
 # application gateway
 az network application-gateway create `
