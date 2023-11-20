@@ -1,0 +1,6 @@
+resources:
+  - ../../base
+
+patches:
+  - path: letsencrypt-prod-http-issuer.yaml
+  - path: letsencrypt-staging-http-issuer.yaml

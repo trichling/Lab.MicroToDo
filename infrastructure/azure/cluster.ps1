@@ -36,17 +36,6 @@ $identityId = az identity create `
     --name $managedIdentityName `
     --query id -o tsv
 
-# create acr pull role assignemnt for identity
-# $containerRegistryId = az acr show `
-#     --resource-group "Infrastructure" `
-#     --name $containerRegistryName `
-#     --query id -o tsv
-
-# az role assignment create `
-#     --assignee $identityId `
-#     --role "AcrPull" `
-#     --scope $containerRegistryId
-
 # create cluster in subnet
 az aks create `
     --resource-group $resourceGroupName `

@@ -21,7 +21,6 @@ helm upgrade cert-manager jetstack/cert-manager --install `
     --namespace cert-manager `
     --set installCRDs=true
 
-kubectl apply -f letsencrypt-prod-http-issuer.yaml
-kubectl apply -f letsencrypt-staging-http-issuer.yaml
+kubectl apply -k ./overlays/agic
 
 $prevPwd | Set-Location
