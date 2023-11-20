@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-prod-http-issuer
+
+spec:
+  acme:
+    solvers:
+    - http01:
+        ingress:
+          class:  azure/application-gateway
+    
