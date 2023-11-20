@@ -18,6 +18,7 @@ $applicationGatewaySubnetName = "subnet-$application-$Environment-application-ga
 $applicationGatewaySubnetAddressSpace = "10.1.4.0/24"
 $applicationGatewayName = "appgw-$application-$Environment"
 $applicationGatewayPublicIpName = "pip-$application-$Environment-application-gateway"
+$applicationGatewayPublicIpDnsName = "$application-$Environment-$Version"
 
 # cluster subnet
 $clusterSubnetId = az network vnet subnet create `
@@ -41,6 +42,10 @@ az network public-ip create `
     -g $resourceGroupName `
     --allocation-method Static `
     --sku Standard
+
+# the former command creates an public ip address, which we need to query to set the dns label
+az network public-ip update -g $resourceGroupName -n $applicationGatewayPublicIpName --dns-name $applicationGatewayPublicIpDnsName 
+
 
 # appgw subnet
 az network vnet subnet create `
@@ -71,6 +76,7 @@ az aks enable-addons `
     -g $resourceGroupName `
     -a ingress-appgw `
     --appgw-id $applicationGatewayId
+
 
 # deploy a sample application
 az aks get-credentials -n $clusterName -g $resourceGroupName
