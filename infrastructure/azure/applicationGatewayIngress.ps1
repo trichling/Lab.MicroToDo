@@ -5,36 +5,17 @@ param (
 
 # https://learn.microsoft.com/en-us/azure/application-gateway/tutorial-ingress-controller-add-on-existing
 
-$location = "westeurope"
 $application = "microtodo"
 $resourceGroupName = "rg-$application-$Environment"
 $vnetName = "vnet-$application-$Environment"
 
 $clusterName = "aks-$application-$Environment-$Version"
-$clusterSubnetName = "subnet-$application-$Environment-$Version"
-$clusterSubnetAddressSpace = "10.1.5.0/24"
 
 $applicationGatewaySubnetName = "subnet-$application-$Environment-application-gateway"
 $applicationGatewaySubnetAddressSpace = "10.1.4.0/24"
 $applicationGatewayName = "appgw-$application-$Environment"
 $applicationGatewayPublicIpName = "pip-$application-$Environment-application-gateway"
 $applicationGatewayPublicIpDnsName = "$application-$Environment-$Version"
-
-# cluster subnet
-$clusterSubnetId = az network vnet subnet create `
-    --resource-group $resourceGroupName `
-    --vnet-name $vnetName `
-    --name $clusterSubnetName `
-    --address-prefixes $clusterSubnetAddressSpace `
-    --query id -o tsv
-
-# create the cluster
-az aks create `
-    -n $clusterName `
-    -g $resourceGroupName `
-    --vnet-subnet-id $clusterSubnetId `
-    --network-plugin azure `
-    --enable-managed-identity
 
 # public ip for application gateway
 az network public-ip create `
