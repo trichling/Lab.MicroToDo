@@ -1,7 +1,13 @@
 param (
     [Parameter(Mandatory)] [string] $Environment,
-    [Parameter(Mandatory)] [string] $Version
+    [Parameter(Mandatory)] [string] $Version,
+    [Parameter(Mandatory)] [string] $IngressController
 )
+
+# only nginx and agic are allowed as ingress controller
+if ($IngressController -ne "nginx" -and $IngressController -ne "agic") {
+    throw "IngressController $IngressController not supported"
+}
 
 $prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
 
@@ -21,7 +27,6 @@ helm upgrade cert-manager jetstack/cert-manager --install `
     --namespace cert-manager `
     --set installCRDs=true
 
-kubectl apply -f letsencrypt-prod-http-issuer.yaml
-kubectl apply -f letsencrypt-staging-http-issuer.yaml
+kubectl apply -k ./overlays/$IngressController
 
 $prevPwd | Set-Location
