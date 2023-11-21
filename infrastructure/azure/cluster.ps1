@@ -14,6 +14,8 @@ if ($NetworkPlugin -eq "azure") {
     $subnetAddressSpace = "10.1.5.0/24"
 } elseif ($NetworkPlugin -eq "kubenet") {
     $subnetAddressSpace = "10.1.5.0/28"
+} else {
+    throw "NetworkPlugin $NetworkPlugin not supported"
 }
 
 # define names
@@ -48,7 +50,7 @@ az aks create `
     --name $clusterName `
     --node-count 1 `
     --node-vm-size "Standard_B2s" `
-    --network-plugin "kubenet" `
+    --network-plugin $NetworkPlugin `
     --vnet-subnet-id $clusterSubnetId `
     --auto-upgrade-channel "stable" `
     --enable-managed-identity `
