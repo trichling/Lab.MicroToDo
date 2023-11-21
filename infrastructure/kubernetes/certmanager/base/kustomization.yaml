@@ -1,0 +1,3 @@
+resources:
+  - letsencrypt-prod-http-issuer.yaml
+  - letsencrypt-staging-http-issuer.yaml
