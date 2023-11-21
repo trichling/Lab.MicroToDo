@@ -61,4 +61,4 @@ az aks create `
     --assign-kubelet-identity $identityId `
     --attach-acr $containerRegistryName `
     --enable-oidc-issuer `
-    --enable-workload-identity `
+    --enable-workload-identity 
