@@ -4,12 +4,8 @@ param (
 )
 
 # define names
-$location = "westeurope"
 $application = "microtodo"
 $resourceGroupName = "rg-$application-$Environment"
-$containerRegistryName = "thinkexception"
-$managedIdentityName = "identity-$application-$Environment-$Version"
-$federatedIdentityName = "federatedidentity-$application-$Environment-$Version"
 $clusterName = "aks-$application-$Environment-$Version"
 
 az aks update `

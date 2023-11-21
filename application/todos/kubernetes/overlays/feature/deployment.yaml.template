@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: microtodo-todos-api
-        image: thinkexception.azurecr.io/microtodo-todosapi:dev
+        image: thinkexception.azurecr.io/microtodo-todosapi:<tag>
         
         env:
           - name: "ASPNETCORE_ENVIRONMENT"

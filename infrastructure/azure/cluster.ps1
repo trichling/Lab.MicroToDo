@@ -1,29 +1,37 @@
 param (
     [Parameter(Mandatory)] [string] $Environment,
-    [Parameter(Mandatory)] [string] $Version
+    [Parameter(Mandatory)] [string] $Version,
+    [Parameter()] [string] $NetworkPlugin
 )
 
+# if no network plugin is provided, use kubenet
+if (-not $NetworkPlugin) {
+    $NetworkPlugin = "kubenet"
+}
+
+# define subnetAdressSpace depending on network plugin
+if ($NetworkPlugin -eq "azure") {
+    $subnetAddressSpace = "10.1.5.0/24"
+} elseif ($NetworkPlugin -eq "kubenet") {
+    $subnetAddressSpace = "10.1.5.0/28"
+} else {
+    throw "NetworkPlugin $NetworkPlugin not supported"
+}
+
 # define names
-$location = "westeurope"
 $application = "microtodo"
 $resourceGroupName = "rg-$application-$Environment"
 $containerRegistryName = "thinkexception"
 
 $vnetName = "vnet-$application-$Environment"
 $subnetName = "subnet-$application-$Environment-$Version"
-$subnetAddressSpace = "10.1.5.0/28"
 
 $managedIdentityName = "identity-$application-$Environment-$Version"
 
 $clusterName = "aks-$application-$Environment-$Version"
 
 # create subnet for cluster in vnet
-$vnetId = az network vnet show `
-    --resource-group $resourceGroupName `
-    --name $vnetName `
-    --query id -o tsv
-
-$subnetId = az network vnet subnet create `
+$clusterSubnetId = az network vnet subnet create `
     --resource-group $resourceGroupName `
     --vnet-name $vnetName `
     --name $subnetName `
@@ -36,33 +44,18 @@ $identityId = az identity create `
     --name $managedIdentityName `
     --query id -o tsv
 
-# create acr pull role assignemnt for identity
-# $containerRegistryId = az acr show `
-#     --resource-group "Infrastructure" `
-#     --name $containerRegistryName `
-#     --query id -o tsv
-
-# az role assignment create `
-#     --assignee $identityId `
-#     --role "AcrPull" `
-#     --scope $containerRegistryId
-
 # create cluster in subnet
 az aks create `
     --resource-group $resourceGroupName `
     --name $clusterName `
     --node-count 1 `
     --node-vm-size "Standard_B2s" `
-    --network-plugin "kubenet" `
-    --vnet-subnet-id $subnetId `
+    --network-plugin $NetworkPlugin `
+    --vnet-subnet-id $clusterSubnetId `
     --auto-upgrade-channel "stable" `
     --enable-managed-identity `
     --assign-identity $identityId `
     --assign-kubelet-identity $identityId `
     --attach-acr $containerRegistryName `
     --enable-oidc-issuer `
-    --enable-workload-identity `
-    --enable-cluster-autoscaler `
-    --min-count 1 `
-    --max-count 3 `
-    --cluster-autoscaler-profile scan-interval=30s
+    --enable-workload-identity 
