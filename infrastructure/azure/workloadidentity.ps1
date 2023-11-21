@@ -5,10 +5,8 @@ param (
 # https://learn.microsoft.com/en-us/azure/aks/learn/tutorial-kubernetes-workload-identity
 
 # define names
-$location = "westeurope"
 $application = "microtodo"
 $resourceGroupName = "rg-$application-$Environment"
-$containerRegistryName = "thinkexception"
 $managedIdentityName = "identity-$application-$Environment-$Version"
 $federatedIdentityName = "federatedidentity-$application-$Environment-$Version"
 $clusterName = "aks-$application-$Environment-$Version"
