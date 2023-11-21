@@ -1,29 +1,37 @@
 param (
     [Parameter(Mandatory)] [string] $Environment,
-    [Parameter(Mandatory)] [string] $Version
+    [Parameter(Mandatory)] [string] $Version,
+    [Parameter()] [string] $NetworkPlugin
 )
 
+# if no network plugin is provided, use kubenet
+if (-not $NetworkPlugin) {
+    $NetworkPlugin = "kubenet"
+}
+
+# define subnetAdressSpace depending on network plugin
+if ($NetworkPlugin -eq "azure") {
+    $subnetAddressSpace = "10.1.5.0/24"
+} elseif ($NetworkPlugin -eq "kubenet") {
+    $subnetAddressSpace = "10.1.5.0/28"
+} else {
+    throw "NetworkPlugin $NetworkPlugin not supported"
+}
+
 # define names
-$location = "westeurope"
 $application = "microtodo"
 $resourceGroupName = "rg-$application-$Environment"
 $containerRegistryName = "thinkexception"
 
 $vnetName = "vnet-$application-$Environment"
 $subnetName = "subnet-$application-$Environment-$Version"
-$subnetAddressSpace = "10.1.5.0/28"
 
 $managedIdentityName = "identity-$application-$Environment-$Version"
 
 $clusterName = "aks-$application-$Environment-$Version"
 
 # create subnet for cluster in vnet
-$vnetId = az network vnet show `
-    --resource-group $resourceGroupName `
-    --name $vnetName `
-    --query id -o tsv
-
-$subnetId = az network vnet subnet create `
+$clusterSubnetId = az network vnet subnet create `
     --resource-group $resourceGroupName `
     --vnet-name $vnetName `
     --name $subnetName `
@@ -42,8 +50,8 @@ az aks create `
     --name $clusterName `
     --node-count 1 `
     --node-vm-size "Standard_B2s" `
-    --network-plugin "kubenet" `
-    --vnet-subnet-id $subnetId `
+    --network-plugin $NetworkPlugin `
+    --vnet-subnet-id $clusterSubnetId `
     --auto-upgrade-channel "stable" `
     --enable-managed-identity `
     --assign-identity $identityId `

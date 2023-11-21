@@ -1,22 +1,23 @@
 param (
     [Parameter(Mandatory)] [string] $Environment,
-    [Parameter(Mandatory)] [string] $Version
+    [Parameter(Mandatory)] [string] $Version,
+    [Parameter()] [string] $NetworkPlugin
 )
 
 $prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
 
+# if no network plugin is provided, use kubenet
+if (-not $NetworkPlugin) {
+    $NetworkPlugin = "kubenet"
+}
+
 # https://learn.microsoft.com/en-us/azure/application-gateway/tutorial-ingress-controller-add-on-existing
 
-$location = "westeurope"
 $application = "microtodo"
 $resourceGroupName = "rg-$application-$Environment"
 $vnetName = "vnet-$application-$Environment"
-$containerRegistryName = "thinkexception"
-$managedIdentityName = "identity-$application-$Environment-$Version"
 
 $clusterName = "aks-$application-$Environment-$Version"
-$clusterSubnetName = "subnet-$application-$Environment-$Version"
-$clusterSubnetAddressSpace = "10.1.5.0/24"
 
 $applicationGatewaySubnetName = "subnet-$application-$Environment-application-gateway"
 $applicationGatewaySubnetAddressSpace = "10.1.4.0/24"
@@ -24,35 +25,7 @@ $applicationGatewayName = "appgw-$application-$Environment"
 $applicationGatewayPublicIpName = "pip-$application-$Environment-application-gateway"
 $applicationGatewayPublicIpDnsName = "$application-$Environment-$Version"
 
-# cluster subnet
-$clusterSubnetId = az network vnet subnet create `
-    --resource-group $resourceGroupName `
-    --vnet-name $vnetName `
-    --name $clusterSubnetName `
-    --address-prefixes $clusterSubnetAddressSpace `
-    --query id -o tsv
-
-# create identity for the cluster
-$identityId = az identity create `
-    --resource-group $resourceGroupName `
-    --name $managedIdentityName `
-    --query id -o tsv
-
-# create the cluster
-az aks create `
-    --resource-group $resourceGroupName `
-    --name $clusterName `
-    --node-count 1 `
-    --node-vm-size "Standard_B2s" `
-    --network-plugin azure `
-    --vnet-subnet-id $clusterSubnetId `
-    --auto-upgrade-channel "stable" `
-    --enable-managed-identity `
-    --assign-identity $identityId `
-    --assign-kubelet-identity $identityId `
-    --attach-acr $containerRegistryName 
-
-    # public ip for application gateway
+# public ip for application gateway
 az network public-ip create `
     -n $applicationGatewayPublicIpName `
     -g $resourceGroupName `
@@ -62,25 +35,35 @@ az network public-ip create `
 # the former command creates an public ip address, which we need to query to set the dns label
 az network public-ip update -g $resourceGroupName -n $applicationGatewayPublicIpName --dns-name $applicationGatewayPublicIpDnsName 
 
-
 # appgw subnet
-az network vnet subnet create `
+$applicationGatewaySubnetId = az network vnet subnet create `
     --name $applicationGatewaySubnetName `
     --resource-group $resourceGroupName `
     --vnet-name $vnetName `
-    --address-prefixes $applicationGatewaySubnetAddressSpace 
+    --address-prefixes $applicationGatewaySubnetAddressSpace `
+    --query id -o tsv
 
 # add aks route table to application gateway subnet (needed if you want to use kubenet)
-# $aksRouteTableId = az network route-table list `
-#     -g $mcResourceGroupName `
-#     --query "[?contains(name, 'MC_')].id" `
-#     -o tsv
+if ($NetworkPlugin -eq "kubenet") {
+    # find route table used by aks cluster
+    # Get the node resource group
+    $nodeResourceGroup = az aks show `
+        -n $clusterName `
+        -g $resourceGroupName `
+        -o tsv `
+        --query "nodeResourceGroup"
 
-# az network vnet subnet update `
-#     --name $applicationGatewaySubnetName `
-#     --resource-group $resourceGroupName `
-#     --vnet-name $vnetName `
-#     --route-table $aksRouteTableId
+    # Get the route table ID
+    $routeTableId = az network route-table list `
+        -g $nodeResourceGroup `
+        --query "[].id | [0]" `
+        -o tsv
+
+    # associate the route table to Application Gateway's subnet
+    az network vnet subnet update `
+        --ids $applicationGatewaySubnetId `
+        --route-table $routeTableId
+}
 
 # application gateway
 az network application-gateway create `
