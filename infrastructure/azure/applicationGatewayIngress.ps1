@@ -4,6 +4,8 @@ param (
     [Parameter] [string] $NetworkPlugin
 )
 
+$prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
+
 # if no network plugin is provided, use kubenet
 if (-not $NetworkPlugin) {
     $NetworkPlugin = "kubenet"
@@ -91,3 +93,5 @@ az aks get-credentials -n $clusterName -g $resourceGroupName
 kubectl apply -f https://raw.githubusercontent.com/Azure/application-gateway-kubernetes-ingress/master/docs/examples/aspnetapp.yaml
 
 kubectl get ingress
+
+$prevPwd | Set-Location
