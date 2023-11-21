@@ -1,7 +1,13 @@
 param (
     [Parameter(Mandatory)] [string] $Environment,
-    [Parameter(Mandatory)] [string] $Version
+    [Parameter(Mandatory)] [string] $Version,
+    [Parameter] [string] $NetworkPlugin
 )
+
+# if no network plugin is provided, use kubenet
+if (-not $NetworkPlugin) {
+    $NetworkPlugin = "kubenet"
+}
 
 # https://learn.microsoft.com/en-us/azure/application-gateway/tutorial-ingress-controller-add-on-existing
 
@@ -27,13 +33,34 @@ az network public-ip create `
 # the former command creates an public ip address, which we need to query to set the dns label
 az network public-ip update -g $resourceGroupName -n $applicationGatewayPublicIpName --dns-name $applicationGatewayPublicIpDnsName 
 
-
 # appgw subnet
-az network vnet subnet create `
+$applicationGatewaySubnetId = az network vnet subnet create `
     --name $applicationGatewaySubnetName `
     --resource-group $resourceGroupName `
     --vnet-name $vnetName `
     --address-prefixes $applicationGatewaySubnetAddressSpace 
+
+# add aks route table to application gateway subnet (needed if you want to use kubenet)
+if ($NetworkPlugin -eq "kubenet") {
+    # find route table used by aks cluster
+    # Get the node resource group
+    $nodeResourceGroup = az aks show `
+        -n $clusterName `
+        -g $resourceGroupName `
+        -o tsv `
+        --query "nodeResourceGroup"
+
+    # Get the route table ID
+    $routeTableId = az network route-table list `
+        -g $nodeResourceGroup `
+        --query "[].id | [0]" `
+        -o tsv
+
+    # associate the route table to Application Gateway's subnet
+    az network vnet subnet update `
+        --ids $applicationGatewaySubnetId `
+        --route-table $routeTableId
+}
 
 # application gateway
 az network application-gateway create `
