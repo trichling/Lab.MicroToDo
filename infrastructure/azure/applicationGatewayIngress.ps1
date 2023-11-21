@@ -7,16 +7,11 @@ $prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
 
 # https://learn.microsoft.com/en-us/azure/application-gateway/tutorial-ingress-controller-add-on-existing
 
-$location = "westeurope"
 $application = "microtodo"
 $resourceGroupName = "rg-$application-$Environment"
 $vnetName = "vnet-$application-$Environment"
-$containerRegistryName = "thinkexception"
-$managedIdentityName = "identity-$application-$Environment-$Version"
 
 $clusterName = "aks-$application-$Environment-$Version"
-$clusterSubnetName = "subnet-$application-$Environment-$Version"
-$clusterSubnetAddressSpace = "10.1.5.0/24"
 
 $applicationGatewaySubnetName = "subnet-$application-$Environment-application-gateway"
 $applicationGatewaySubnetAddressSpace = "10.1.4.0/24"
@@ -24,35 +19,7 @@ $applicationGatewayName = "appgw-$application-$Environment"
 $applicationGatewayPublicIpName = "pip-$application-$Environment-application-gateway"
 $applicationGatewayPublicIpDnsName = "$application-$Environment-$Version"
 
-# cluster subnet
-$clusterSubnetId = az network vnet subnet create `
-    --resource-group $resourceGroupName `
-    --vnet-name $vnetName `
-    --name $clusterSubnetName `
-    --address-prefixes $clusterSubnetAddressSpace `
-    --query id -o tsv
-
-# create identity for the cluster
-$identityId = az identity create `
-    --resource-group $resourceGroupName `
-    --name $managedIdentityName `
-    --query id -o tsv
-
-# create the cluster
-az aks create `
-    --resource-group $resourceGroupName `
-    --name $clusterName `
-    --node-count 1 `
-    --node-vm-size "Standard_B2s" `
-    --network-plugin azure `
-    --vnet-subnet-id $clusterSubnetId `
-    --auto-upgrade-channel "stable" `
-    --enable-managed-identity `
-    --assign-identity $identityId `
-    --assign-kubelet-identity $identityId `
-    --attach-acr $containerRegistryName 
-
-    # public ip for application gateway
+# public ip for application gateway
 az network public-ip create `
     -n $applicationGatewayPublicIpName `
     -g $resourceGroupName `
