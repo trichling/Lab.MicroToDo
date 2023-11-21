@@ -1,7 +1,7 @@
 param (
     [Parameter(Mandatory)] [string] $Environment,
     [Parameter(Mandatory)] [string] $Version,
-    [Parameter] [string] $NetworkPlugin
+    [Parameter()] [string] $NetworkPlugin
 )
 
 $prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
@@ -40,7 +40,8 @@ $applicationGatewaySubnetId = az network vnet subnet create `
     --name $applicationGatewaySubnetName `
     --resource-group $resourceGroupName `
     --vnet-name $vnetName `
-    --address-prefixes $applicationGatewaySubnetAddressSpace 
+    --address-prefixes $applicationGatewaySubnetAddressSpace `
+    --query id -o tsv
 
 # add aks route table to application gateway subnet (needed if you want to use kubenet)
 if ($NetworkPlugin -eq "kubenet") {
