@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
         - name: microtodo-frontend
-          image: thinkexception.azurecr.io/microtodo-frontend:dev
+          image: thinkexception.azurecr.io/microtodo-frontend:<Tag>
       
           env:
           - name: BLAZOR_ENVIRONMENT

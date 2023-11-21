@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
         - name: microtodo-frontend-api
-          image: thinkexception.azurecr.io/microtodo-frontendapi:dev
+          image: thinkexception.azurecr.io/microtodo-frontendapi:<Tag>
 
           env:
             - name: "ASPNETCORE_ENVIRONMENT"
