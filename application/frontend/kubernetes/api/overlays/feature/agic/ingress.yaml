@@ -1,0 +1,17 @@
+- op: remove
+  paths: nginx.ingress.kubernetes.io~1use-regex
+
+- op: remove
+  paths: nginx.ingress.kubernetes.io~1rewrite-target
+
+- op: add
+  path: /metadata/annotations/appgw.ingress.kubernetes.io~1backend-path-prefix
+  value: "/"
+
+- op: add
+  path: /metadata/annotations/appgw.ingress.kubernetes.io~1health-probe-path
+  value: "/swagger"
+
+- op: replace
+  path: /spec/ingressClassName
+  value: "azure-application-gateway"

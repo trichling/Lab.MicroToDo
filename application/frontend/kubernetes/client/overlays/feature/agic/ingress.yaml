@@ -1,0 +1,7 @@
+- op: add
+  path: /metadata/annotations/appgw.ingress.kubernetes.io~1backend-path-prefix
+  value: "/"
+
+- op: replace
+  path: /spec/ingressClassName
+  value: "azure-application-gateway"
