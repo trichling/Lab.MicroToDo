@@ -91,7 +91,7 @@ az aks enable-addons `
 
 # deploy a sample application
 az aks get-credentials -n $clusterName -g $resourceGroupName
-kubectl apply -f https://raw.githubusercontent.com/Azure/application-gateway-kubernetes-ingress/master/docs/examples/aspnetapp.yaml
+# kubectl apply -f https://raw.githubusercontent.com/Azure/application-gateway-kubernetes-ingress/master/docs/examples/aspnetapp.yaml
 
 kubectl get ingress
 
