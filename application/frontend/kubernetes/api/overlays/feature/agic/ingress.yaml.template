@@ -18,7 +18,7 @@
 
 - op: add
   path: /spec/rules/0/host
-  value: "microtodo-dev-1.westeurope.cloudapp.azure.com"
+  value: "microtodo-dev-<Version>.westeurope.cloudapp.azure.com"
 
 - op: replace
   path: /spec/rules/0/http/paths/0/path
