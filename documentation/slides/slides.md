@@ -35,10 +35,10 @@ hideInToc: true
 
 ---
 layout: section
-background: <image url or HEX or rbg or rgba> (optional)
+background: /JourneyMap.png
 ---
 
-# Dockerization
+# Container
 
 ---
 layout: two-cols
