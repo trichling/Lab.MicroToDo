@@ -1,4 +1,5 @@
 ---
+theme: the-unnamed
 hideInToc: true
 layout: cover
 ---
@@ -6,22 +7,31 @@ layout: cover
 
 # A journey to Kubernetes
 
-From local to cluster in 10 easy steps
+From local to cluster in ten easy steps
+---
+hideInToc: true
+layout: about-me
 
-Tobias Richling (apetito AG) <ic-baseline-email /> [tobias.richling@apetito.de](mailto:tobias.richling@apetito.de) <mdi-twitter />  [@trichling](https://twitter.com/trichling)
+helloMsg: Hello, I'm
+name: Tobias Richling
+imageSrc: /Tobi.jpg
+job: Software Developer
+line1: apetito AG
+social1: '@trichling'
+social2: tobias.richling@apetito.de
 
-
+---
 ---
 hideInToc: true
 ---
 
-# A map of our journey
-
-<toc />
+# The journey map
+<img src="/JourneyMap.png" class="w-full max-w-lg max-h-lg mx-auto rounded shadow" />
 
 ---
 
 # A demo application
+<img src="/DemoApp.png" class="w-full max-w-lg max-h-lg mx-auto rounded shadow" />
 
 ---
 
