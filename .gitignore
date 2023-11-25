@@ -3,8 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
-# exclude deployment.yaml from feature overlays
+# exclude templated files
 **/overlays/feature/**/deployment.yaml
+**/build.ps1
+**/nginx.conf
 
 # User-specific files
 *.rsuser
