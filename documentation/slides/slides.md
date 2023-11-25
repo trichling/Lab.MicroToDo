@@ -29,9 +29,19 @@ hideInToc: true
 <img src="/JourneyMap.png" class="w-full max-w-lg max-h-lg mx-auto rounded shadow" />
 
 ---
+layout: section
+background: /JourneyMap.png
+---
 
 # A demo application
-<img src="/DemoApp.png" class="w-full max-w-lg max-h-lg mx-auto rounded shadow" />
+What do we have to do?
+---
+---
+# This is Rate my beer
+
+<img src="/DemoApp.png" class="w-full max-w-md max-h-md mx-auto rounded shadow" />
+
+<p v-click style="text-align: right">But we will do something a lot simpler</p>
 
 ---
 layout: section
