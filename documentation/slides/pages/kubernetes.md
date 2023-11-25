@@ -1,4 +1,33 @@
-# Quetions
+---
+layout: center
+---
+# Some basics about Kubernetes
+very few, if needed?
+
+---
+layout: two-cols
+---
+
+# Architektur
+
+<img src="/KubernetesArchitektur.png" class="p-4 w-full max-w-lg max-h-lg mx-auto rounded shadow" />
+
+::right::
+
+# Api Objects
+
+<img src="/KubernetesApiObjects.png" class="p-4 w-full max-w-lg max-h-lg mx-auto rounded shadow" />
+
+
+---
+layout: center
+---
+# How hard can it be?
+az aks create
+
+---
+
+# Maybe a littel bit harder
 
 > How many environments do you have?
 
@@ -63,12 +92,90 @@ Due to the fact that we wish to support a high number of clusters and we do not 
 
 Even if the number of clusters is not that high we will attach numbers to the cluster names to make it easier to identify them.
 
-
 > Naming convention for clusters will be
 
 
-
-```powershell 
+```powershell
 aks-[app]-[env]-[number]
 ```
+<!--
+Demo:
+    infrastructure/azure/basic.ps1
+    infrastructure/azure/cluster.ps1
+-->
 
+---
+layout: center
+---
+# How to bring the application to the cluster?
+Helm, Kustomize, CDK8s, or whatever ...
+
+---
+layout: two-cols
+---
+# Helm
+
+## Pros
+- Can handle complex deployments
+- Can publish charts to a repository
+
+## Cons
+- Additional tooling / learning curve
+- Tends to be more complex than needed
+
+<br />
+
+> Geared towards deploying whole applications
+
+:: right ::
+
+# Kustomize
+
+## Pros
+- Part of kubectl
+- Based on standard kubernetes manifests
+
+## Cons
+- Documentation is not that good
+- Needs additional tooling for templating
+
+<br />
+
+> Geared towards deploying parts of applications
+
+<!--
+Demo: 
+    infrastructure7kubernetes/sqlserver/deploy-feature.ps1
+
+Explain base / overlay
+
+Deploy application, explain .template / prepare-branch.ps1
+
+# Application changes
+
+## Client
+
+- Set BLAZOR_ENVIRONMENT via deployment env vars (remember what we did in the dockerfile?)
+- Inject URL to BFF via env var: `Dependencies__APIs__TodosApiBaseUrl`
+
+## BFF
+
+- Set ASPNETCORE_ENVIRONMENT via deployment env vars
+- Inject URL to API via env var: `Dependencies__Apis__TodosApiBaseUrl`
+
+## API
+
+- Grab database password from secret `mssql-sapassword`
+
+-->
+
+---
+layout: center
+---
+# Let's see it in action!
+Your application, locked up into a cluster!
+
+
+<!--
+Per Port-Forward mit Pod verbinden
+-->
