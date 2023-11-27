@@ -20,6 +20,7 @@ kubectl create namespace ingress-nginx --dry-run=client -o yaml | kubectl apply 
 helm upgrade nginx-ingress ingress-nginx/ingress-nginx --install `
     --namespace ingress-nginx `
     --set controller.replicaCount=3 `
+    --set controller.service.externalTrafficPolicy=Local `
     --set controller.nodeSelector."kubernetes\.io/os"=linux `
     --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux `
     --set controller.admissionWebhooks.patch.nodeSelector."kubernetes\.io/os"=linux
