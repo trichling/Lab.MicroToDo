@@ -1,4 +1,7 @@
 - op: remove
+  path: /metadata/annotations/nginx.ingress.kubernetes.io~1rewrite-target
+
+- op: remove
   path: /metadata/annotations/nginx.ingress.kubernetes.io~1ssl-redirect
 
 - op: remove
@@ -22,8 +25,12 @@
 
 - op: replace
   path: /spec/tls/0/hosts/0
-  value: "microtodo-dev-0.westeurope.cloudapp.azure.com"
+  value: "microtodo-dev-<Version>.westeurope.cloudapp.azure.com"
 
 - op: replace
   path: /spec/rules/0/host
-  value: "microtodo-dev-0.westeurope.cloudapp.azure.com"
+  value: "microtodo-dev-<Version>.westeurope.cloudapp.azure.com"
+
+- op: replace
+  path: /spec/rules/0/http/paths/0/path
+  value: "/api/*"
