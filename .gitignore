@@ -5,6 +5,7 @@
 
 # exclude templated files
 **/overlays/feature/**/deployment.yaml
+**/overlays/feature/**/ingress.yaml
 **/build.ps1
 **/nginx.conf
 
