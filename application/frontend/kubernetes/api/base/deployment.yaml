@@ -25,7 +25,7 @@ spec:
           - name: "ASPNETCORE_ENVIRONMENT"
             value: "Production"
           - name: "FeatureFlags__UseTodosService"
-            value: "true"
+            value: "false"
           - name: "Dependencies__Apis__TodosApiBaseUrl"
             value: "http://microtodo-todos-api:80"
 

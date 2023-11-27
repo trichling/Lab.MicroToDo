@@ -1,15 +1,16 @@
 param (
-    [Parameter] [string] $Environment,
-    [Parameter] [string] $Version,
+    [Parameter()] [string] $Environment,
+    [Parameter()] [string] $Version
 )
 
-if ($Environment -eq $null) {
+if ($Environment -eq $null -or $Environment -eq "") {
     $Environment = "dev"
 }
 
-if ($Version -eq $null) {
+# if version is null or empty
+if ($Version -eq $null -or $Version -eq "") {
     $Version = "0"
 }
 
-prepare-branch.ps1 $Version 03-kubernetes
-deploy-all.ps1
+./prepare-branch.ps1 $Version 03-kubernetes
+./deploy-feature.ps1
