@@ -11,5 +11,5 @@ if ($Version -eq $null) {
     $Version = "0"
 }
 
-prepare-branch.ps1 $Version 04-ingress
+prepare-branch.ps1 $Version 05-ssl
 deploy-feature-agic.ps1
