@@ -5,6 +5,9 @@
 
 # exclude deployment.yaml from feature overlays
 **/overlays/feature/**/deployment.yaml
+**/overlays/feature/**/ingress.yaml
+**/build.ps1
+**/nginx.conf
 
 # User-specific files
 *.rsuser
