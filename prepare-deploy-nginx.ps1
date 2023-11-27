@@ -1,15 +1,18 @@
 param (
-    [Parameter] [string] $Environment,
-    [Parameter] [string] $Version,
+    [Parameter()] [string] $Environment,
+    [Parameter()] [string] $Version
 )
 
-if ($Environment -eq $null) {
+if ($Environment -eq $null -or $Environment -eq "") {
     $Environment = "dev"
 }
 
-if ($Version -eq $null) {
+# if version is null or empty
+if ($Version -eq $null -or $Version -eq "") {
     $Version = "0"
 }
 
-prepare-branch.ps1 $Version 04-ingress
-deploy-feature-nginx.ps1
+az aks get-credentials --resource-group rg-microtodo-$Environment --name aks-microtodo-$Environment-$Version --overwrite-existing
+
+./prepare-branch.ps1 $Version 04-ingress
+./deploy-feature-nginx.ps1
