@@ -67,6 +67,11 @@ function Get-ClusterSubnetCidrForAzure() {
 
 #endregion
 
+# if no vnet start ip is provided, use the default
+if (-not $VnetStartIp) {
+    $VnetStartIp = "10.1.4.0/22"
+}
+
 # if no network plugin is provided, use kubenet
 if (-not $NetworkPlugin) {
     $NetworkPlugin = "kubenet"
