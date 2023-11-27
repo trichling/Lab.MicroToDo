@@ -1,4 +1,5 @@
 using Lab.MicroToDo.Frontend.Api.Todos;
+using Microsoft.OpenApi.Models;
 
 
 
@@ -22,7 +23,18 @@ builder.Services.RegisterSerivcesForTodosModule(builder.Configuration);
 
 var app = builder.Build();
 
-app.UseSwagger();
+app.UseSwagger(c => {
+    c.PreSerializeFilters.Add((swagger, _) => {
+        swagger.Servers.Add(new OpenApiServer() {
+            Description = "Hosted environment",
+            Url = "/api"
+        });
+        swagger.Servers.Add(new OpenApiServer() {
+            Description = "Local environment",
+            Url = "/"
+        });
+    });
+});
 app.UseSwaggerUI();
 
 app.UseCors("AllowAll");
