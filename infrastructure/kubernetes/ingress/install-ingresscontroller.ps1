@@ -17,7 +17,7 @@ helm repo update
 
 kubectl create namespace ingress-nginx --dry-run=client -o yaml | kubectl apply -f -
 
-helm install nginx-ingress ingress-nginx/ingress-nginx `
+helm upgrade nginx-ingress ingress-nginx/ingress-nginx --install `
     --namespace ingress-nginx `
     --set controller.replicaCount=3 `
     --set controller.nodeSelector."kubernetes\.io/os"=linux `
