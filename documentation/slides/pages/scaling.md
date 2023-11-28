@@ -10,4 +10,4 @@ Adjusts the CPU and memory requests of pods to match their usage.
 
 > Horizontal Pod Autoscaler
 
-Scales deployments according to CPU usage.
+Scales deployments according to usage metrics.
