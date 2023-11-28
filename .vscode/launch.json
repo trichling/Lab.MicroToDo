@@ -54,6 +54,21 @@
             "cwd": "${workspaceFolder}/application/todos/src/Lab.MicroToDo.Todos.Api",
             "stopAtEntry": false,
             "console": "internalConsole"
+        },
+        {
+            "name": "Attach Api (Kubernetes)",
+            "type": "coreclr",
+            "request": "attach",
+            "pipeTransport": {
+                "pipeProgram": "kubectl",
+                "pipeArgs": [ "exec", "-i", "${command:extension.vsKubernetesSelectPod}", "--" ],
+                "pipeCwd": "${workspaceRoot}",
+                "debuggerPath": "/root/vsdbg/vsdbg",
+                "quoteArgs": false
+            },
+            "sourceFileMap": {
+                "/src": "${workspaceRoot}"
+            }
         }
 
     ]
