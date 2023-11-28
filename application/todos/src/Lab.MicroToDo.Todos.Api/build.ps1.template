@@ -4,10 +4,3 @@ docker build -f Dockerfile -t thinkexception.azurecr.io/microtodo-todosapi:<Tag>
 docker push thinkexception.azurecr.io/microtodo-todosapi:<Tag>
 
 $prevPwd | Set-Location
-
-$prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
-
-docker build -f Dockerfile -t thinkexception.azurecr.io/microtodo-todosapi:<Tag> .\..
-docker push thinkexception.azurecr.io/microtodo-todosapi:<Tag>
-
-$prevPwd | Set-Location
