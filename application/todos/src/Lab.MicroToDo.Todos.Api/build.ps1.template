@@ -1,11 +1,6 @@
 $prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
 
-# dev build (with remote debugger)
-docker build --target publish -f Dockerfile -t thinkexception.azurecr.io/microtodo-frontendapi:<Tag> --build-arg CONFIG=Debug .\..
-docker push thinkexception.azurecr.io/microtodo-frontendapi:<Tag>
-
-# production build (withou remote debugger)
-docker build -f Dockerfile -t thinkexception.azurecr.io/microtodo-frontendapi:<Tag> --build-arg CONFIG=Release .\..
-docker push thinkexception.azurecr.io/microtodo-frontendapi:<Tag>
+docker build -f Dockerfile -t thinkexception.azurecr.io/microtodo-todosapi:<Tag> .\..
+docker push thinkexception.azurecr.io/microtodo-todosapi:<Tag>
 
 $prevPwd | Set-Location
