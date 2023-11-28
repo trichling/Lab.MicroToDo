@@ -36,6 +36,7 @@ helm upgrade grafana grafana/grafana `
 
 $passwordBase64 = $(kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}")
 $password = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($passwordBase64))
+$username = "admin"
 $grafanaPodName = $(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=grafana,app.kubernetes.io/instance=grafana" -o jsonpath="{.items[0].metadata.name}")
 # kubectl port-forward $grafanaPodName 3000:3000 -n monitoring
 
