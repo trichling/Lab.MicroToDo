@@ -33,15 +33,19 @@ layout: section
 background: /JourneyMap.png
 ---
 
-# A demo application
-What do we have to do?
+# Are we services, and if so how many?
+What does Microservice Architecture mean to us?
 ---
 ---
-# This is Rate my beer
+# For example RateMyBeer
 
 <img src="/DemoApp.png" class="w-full max-w-md max-h-md mx-auto rounded shadow" />
 
 <p v-click style="text-align: right">But we will do something a lot simpler</p>
+
+<!--
+Not necessarily "micro" but self contained
+-->
 
 ---
 layout: section
