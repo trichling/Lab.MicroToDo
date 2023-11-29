@@ -1,4 +1,5 @@
 param (
+    [Parameter(Mandatory)] [string] $Environment,
     [Parameter(Mandatory)] [string] $Version,
     [Parameter()] [string] $Tag
 )
@@ -13,5 +14,6 @@ foreach ($file in $configFiles) {
     (Get-Content $file.PSPath) |
     Foreach-Object { $_ -replace "<Tag>", $Tag } |
     Foreach-Object { $_ -replace "<Version>", $Version } |
+    Foreach-Object { $_ -replace "<Environment>", $Environment } |
     Set-Content $file.PSPath.replace(".template", "")
 }
