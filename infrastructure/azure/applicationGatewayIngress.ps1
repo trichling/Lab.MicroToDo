@@ -1,6 +1,7 @@
 param (
     [Parameter(Mandatory)] [string] $Environment,
     [Parameter(Mandatory)] [string] $Version,
+    [Parameter(Mandatory)] [string] $ApplicationGatewaySubnetAddressSpace,
     [Parameter()] [string] $NetworkPlugin
 )
 
@@ -9,6 +10,11 @@ $prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
 # if no network plugin is provided, use kubenet
 if (-not $NetworkPlugin) {
     $NetworkPlugin = "kubenet"
+}
+
+# if no applicationGatewaySubnetAddressSpace is provided, use default
+if (-not $ApplicationGatewaySubnetAddressSpace) {
+    $ApplicationGatewaySubnetAddressSpace = "10.1.4.0/24"
 }
 
 # https://learn.microsoft.com/en-us/azure/application-gateway/tutorial-ingress-controller-add-on-existing
@@ -20,7 +26,6 @@ $vnetName = "vnet-$application-$Environment"
 $clusterName = "aks-$application-$Environment-$Version"
 
 $applicationGatewaySubnetName = "subnet-$application-$Environment-application-gateway"
-$applicationGatewaySubnetAddressSpace = "10.1.4.0/24"
 $applicationGatewayName = "appgw-$application-$Environment"
 $applicationGatewayPublicIpName = "pip-$application-$Environment-application-gateway"
 $applicationGatewayPublicIpDnsName = "$application-$Environment-$Version"

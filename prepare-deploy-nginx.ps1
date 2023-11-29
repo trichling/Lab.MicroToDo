@@ -12,5 +12,5 @@ if ($Version -eq $null -or $Version -eq "") {
     $Version = "0"
 }
 
-./prepare-branch.ps1 $Version 05-ssl
+./prepare-branch.ps1 $Environment $Version 05-ssl
 ./deploy-feature-nginx.ps1
