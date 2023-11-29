@@ -1,6 +1,6 @@
 param (
-    [Parameter] [string] $Environment,
-    [Parameter] [string] $Version,
+    [Parameter()] [string] $Environment,
+    [Parameter()] [string] $Version
 )
 
 if ($Environment -eq $null) {
@@ -11,5 +11,5 @@ if ($Version -eq $null) {
     $Version = "0"
 }
 
-prepare-branch.ps1 $Version 06-workloadidentity
-deploy-feature-nginx.ps1
+./prepare-branch.ps1 $Version 06-workloadidentity
+./deploy-feature-nginx.ps1
