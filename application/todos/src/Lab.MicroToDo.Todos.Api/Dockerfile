@@ -1,7 +1,7 @@
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 as base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 as base
 WORKDIR /app
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 as build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
 WORKDIR /application/todos/src
 COPY Lab.MicroToDo.Todos.Api/Lab.MicroToDo.Todos.Api.csproj Lab.MicroToDo.Todos.Api/
 COPY Lab.MicroToDo.Todos.Contracts/Lab.MicroToDo.Todos.Contracts.csproj Lab.MicroToDo.Todos.Contracts/
