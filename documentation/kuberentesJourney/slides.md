@@ -1,5 +1,5 @@
 ---
-theme: the-unnamed
+theme: dracula
 hideInToc: true
 layout: cover
 ---
