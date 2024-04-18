@@ -562,7 +562,7 @@ database "MySql" {
 ---
 foo: bar
 dragPos:
-  square: 691,33,167,_,-16
+  square: 673,39,167,_,-16
 ---
 
 # Draggable Elements
