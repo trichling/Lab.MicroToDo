@@ -66,7 +66,7 @@ docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" | grep think
 
 ## Syft
 
-Statt <span v-mark.circle.red="0" v-click>94 Paketen</span> nur noch <span style="font-size: 27pt; color: red" v-click >9 Pakete</span>
+Statt <span v-mark.circle.red="-1" v-click>94 Paketen</span> nur noch <span style="font-size: 27pt; color: red" v-click >9 Pakete</span>
 
 <v-click at="3">
 
