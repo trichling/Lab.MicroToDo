@@ -21,7 +21,7 @@ layout: author
 
 # Tobias Richling
 
-Team Lead Digital Operations @ apetito AG
+Software Developer @ apetito AG
 Passionate about .NET, Docker, Kubernetes and Softwere Architecture
 
 <footer>
@@ -37,9 +37,16 @@ layout: image-right
 image: /DockerHarbour.jpg
 ---
 # Agenda
-- Wo ist das Problem?
-- Was kann man tun? 
-- Was soll schon schief gehen?
+
+- Ein Blick in die dunklen Ecken der Softwareentwicklung
+
+- Ein praktischer Leitfaden zu Sauberkeit und Hygiene im eigenen Container
+
+    - Was nicht da ist, muss nicht geputzt werden
+
+    - Was nicht mehr da ist auch nicht
+
+- Aufgeräumt, kaputt. Und jetzt?
 
 ---
 layout: section

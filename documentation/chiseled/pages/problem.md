@@ -1,8 +1,49 @@
-# Ein Blick in die Container Registry
+---
+layout: image-right
+image: /DefenderForCloud.jpg
+---
+# Probleme erkennen
+
+<v-clicks>
+
+<a href="https://portal.azure.com/#view/Microsoft_Azure_Security/SecurityMenuBlade/~/EnvironmentSettings" target="_blank">
+
+- Microsoft Defender For Cloud (oder ähnliches) aktivieren
+
+</a>
+
+- Neue Images pushen
+
+- Ein bisschen warten
+
+</v-clicks>
+
+---
+layout: image-right
+image: /DefenderForCloud-ContainerRegistry.jpg
+---
+# Probleme erkennen
+
+<v-clicks depth="2">
+
+- Zur Container Registry gehen
+
+- Alerts anschauen (speziell die für Container Images)
+
+- Diese unterteilen sich in 2 große Kategorien
+
+    - Betriebssystem Pakete (z. B. deb)
+    
+    - Anwendungspakete (z. B. NuGet)
+
+</v-clicks>
 
 ---
 
-# Ein ganz normales Dockerfile
+# Woher kommen diese Verwundbarkeiten?
+
+## Ein ganz normales Dockerfile
+
 
 ---
 
