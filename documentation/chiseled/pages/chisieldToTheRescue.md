@@ -61,7 +61,9 @@ docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" | grep think
 -->
 
 ---
-
+layout: image-right
+image: /SqueezeContainer.jpg
+---
 # Und was macht das mit dem Image?
 
 ## Syft
