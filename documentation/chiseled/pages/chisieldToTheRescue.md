@@ -31,23 +31,58 @@ FROM base as final
 WORKDIR /app
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "Lab.MicroToDo.Frontend.Api.dll"]
+~~~
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy-chiseled as base
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
+WORKDIR /app
+COPY Lab.MicroToDo.Frontend.Api/Lab.MicroToDo.Frontend.Api.csproj Lab.MicroToDo.Frontend.Api/
+COPY Lab.MicroToDo.Frontend.Contracts/Lab.MicroToDo.Frontend.Contracts.csproj Lab.MicroToDo.Frontend.Contracts/
+
+RUN dotnet restore "Lab.MicroToDo.Frontend.Api/Lab.MicroToDo.Frontend.Api.csproj"
+COPY . .
+RUN dotnet publish "Lab.MicroToDo.Frontend.Api/Lab.MicroToDo.Frontend.Api.csproj" -c Release -o /app/publish
+
+FROM base as final
+WORKDIR /app
+COPY --from=build /app/publish .
+ENTRYPOINT ["dotnet", "Lab.MicroToDo.Frontend.Api.dll"]
 ```
 
 Docker Image bauen:
 ```bash
-docker build -f Dockerfile -t thinkexception.azurecr.io/microtodo-frontendapi:dev-net8 .\..
+docker build -f Dockerfile -t thinkexception.azurecr.io/microtodo-frontendapi:dev-net8-chiseled .\..
 ```
 
-```bash
-syft thinkexception.azurecr.io/microtodo-frontendapi:net8-chiseled
-syft thinkexception.azurecr.io/microtodo-frontendapi:net8-chiseled | grep deb | wc -l
-
-grype thinkexception.azurecr.io/microtodo-frontendapi:net8-chiseled
-grype thinkexception.azurecr.io/microtodo-frontendapi:net8-chiseled | grep deb | wc -l
-```
 
 <!-- 
-docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" | grep thinkexception.azurecr.io/microtodo-frontendap -->
+docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" | grep thinkexception.azurecr.io/microtodo-frontendap 
+-->
+
+---
+
+# Und was macht das mit dem Image?
+
+## Syft
+
+Statt <span v-mark.circle.red="0" v-click>94 Paketen</span> nur noch <span style="font-size: 27pt; color: red" v-click >9 Pakete</span>
+
+<v-click at="3">
+
+## Grype
+
+Statt <span v-mark.circle.red="3" v-click="4">3 High-Vulnerabilities</span>  nur noch <span style="font-size: 27pt; color: red" v-click="5">0 High-Vulnerabilities</span>
+
+</v-click>
+
+<v-click at="6">
+
+## Size
+
+Statt <span v-mark.circle.red="6" v-click="7">223 MB</span> nur noch <span style="font-size: 27pt; color: red" v-click="8">115 MB</span>
+
+</v-click>
 
 ---
 
