@@ -75,7 +75,7 @@ layout: section
 ---
 
 # Was kann schiefgehen?
-Ein paar Fettnäpfchen die man vermeiden kann
+Zu Risiken und Nebenwirkungen
 
 ---
 src: /pages/chisieldWhatCanGoWrong.md
