@@ -89,3 +89,18 @@ Nur ein gelöschtes Image ist ein sicheres Image
 ---
 src: /pages/cleanupYourRegistry.md
 ---
+---
+layout: section
+---
+# Fazit
+
+---
+
+# Fazit
+- Alte Images sind wie alte Socken: Sie stinken und sollten regelmäßig gewechselt werden
+
+- syft & grype sind gute Tools um Schwachstellen in Images zu finden
+
+- Chiseled Images sind ein guter Weg um die Sicherheit und Performance von Containern zu verbessern
+
+- Aufräumen alter Images ist zusätzlich erforderlich
