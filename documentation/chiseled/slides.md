@@ -5,7 +5,7 @@ theme: dracula
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: /DockerChiseled.jpg
 # some information about your slides, markdown enabled
-title: Welcome to Slidev
+title: Chiseled to perfection
 layout: cover
 ---
 
@@ -86,3 +86,6 @@ layout: section
 
 # Wie wäre es mit aufräumen?
 Nur ein gelöschtes Image ist ein sicheres Image
+---
+src: /pages/cleanupYourRegistry.md
+---

@@ -18,10 +18,10 @@
 
 ---
 
-# Nicht die "Shell" sondern die "Exec" Form verwenden
+# "Shell" vs "Exec" Form
 
 
-# NO: "Shell" form
+## DONT: "Shell" form
 
 ```dockerfile
 RUN dotnet --list-runtimes
@@ -33,7 +33,7 @@ CMD dotnet myapp.dll -- args
 <br/>
 <br/>
 
-# YES: "Exec" form
+## DO: "Exec" form
     
 ```dockerfile
 RUN ["dotnet", "--list-runtimes"]
@@ -43,12 +43,24 @@ CMD ["dotnet", "myapp.dll", "--", "args"]
 
 ---
 
-# wget, apt und co gehören in die build stage
-
-```dockerfile {3-5|9-11|12-15}	
+# wget, apt und Co
+## DONT: wget in der final stage
+```dockerfile {7-8}
 # build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build
 ...
+
+# final stage/image
+FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-jammy-chiseled
+RUN wget -O somefile.tar.gz <URL> \
+   && tar -oxzf aspnetcore.tar.gz -C /somefile-extracted
+```
+
+## DO: wget in der build stage 
+
+```dockerfile {3-4}
+# build stage
+FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build
 RUN wget -O somefile.tar.gz <URL> \
     && tar -oxzf aspnetcore.tar.gz -C /somefile-extracted
 ...
@@ -56,30 +68,24 @@ RUN wget -O somefile.tar.gz <URL> \
 # final stage/image
 FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-jammy-chiseled
 ...
-COPY --from=build /somefile-extracted .
-
-# This wont work! 
-# RUN wget -O somefile.tar.gz <URL> \
-#    && tar -oxzf aspnetcore.tar.gz -C /somefile-extracted
 ```
 
 ---
 
-# Dateien müssen in ein Verzeichnis ohne root-Rechte geschrieben werden
-
-### Das ist überlicherweise nicht das Verzeichnis wo die app installiert ist!!
+# Ablage von Dateien
 
 <br/>
 
-## Das klappt nicht
-```
+## DONT: Schreiben in das Verzeichniss der Applikation
+
+```csharp
 File.WriteAllLines("myFile.txt", myText);
 ```
 
 <br/>
 
-## Das schon
-```
-string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "myFile.txt");
+## DO: in das Dateien im Benutzerprofil ablegen
+```csharp
+var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "myFile.txt");
 File.WriteAllLines(path, myText);
 ```
