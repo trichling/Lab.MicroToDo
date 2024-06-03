@@ -40,7 +40,7 @@ image: /DefenderForCloud-ContainerRegistry.jpg
 
 ---
 
-# Ein normales Docker Image...
+# Ein normales Docker-Image...
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 as base
@@ -74,7 +74,7 @@ image: /Syft.png
 
 <v-clicks>
 
-- um das herauszufinden gibt es <a href="https://github.com/anchore/syft" target="_blank">syft</a>
+- um das herauszufinden, gibt es <a href="https://github.com/anchore/syft" target="_blank">syft</a>
 
 ```powershell
 syft `
@@ -84,7 +84,7 @@ syft `
 
 - und wie viel davon ist vom Betriebssystem?
 
-- ratet mal... und bedenkt, das es sich um ein Runtime Image handelt - kein SDK Image!
+- ratet mal... und bedenkt, dass es sich um ein Runtime-Image handelt - kein SDK-Image!
 
 ```powershell
 syft thinkexception.azurecr.io/

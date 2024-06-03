@@ -22,7 +22,7 @@ layout: author
 # Tobias Richling
 
 Teamleiter Digital Operations @ apetito AG
-Passionate about .NET, Docker, Kubernetes and Softwere Architecture
+Passionate about .NET, Docker, Kubernetes and Software Architecture
 
 <footer>
 
@@ -99,8 +99,8 @@ layout: section
 # Fazit
 - Alte Images sind wie alte Socken: Sie stinken und sollten regelmäßig gewechselt werden
 
-- syft & grype sind gute Tools um Schwachstellen in Images zu finden
+- syft & grype sind gute Tools, um Schwachstellen in Images zu finden
 
-- Chiseled Images sind ein guter Weg um die Sicherheit und Performance von Containern zu verbessern
+- Chiseled Images sind ein guter Weg, um die Sicherheit und Performance von Containern zu verbessern
 
 - Aufräumen alter Images ist zusätzlich erforderlich
