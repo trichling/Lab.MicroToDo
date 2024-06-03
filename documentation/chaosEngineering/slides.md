@@ -5,13 +5,13 @@ theme: dracula
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: /DockerChiseled.jpg
 # some information about your slides, markdown enabled
-title: Chiseled to perfection
+title: Chaos Engineering
 layout: cover
 ---
 
-# Chiseled to perfection
+# Bring ein bisschen Chaos in die Ordnung!
 
-Schlanke und Sichere Container-Images mit .NET bauen
+Chaos Engineering mit Chaos Mesh
 ---
 layout: author
 ---
@@ -47,60 +47,3 @@ image: /DockerHarbour.jpg
     - Was nicht mehr da ist auch nicht
 
 - Aufgeräumt, kaputt. Und jetzt?
-
----
-layout: section
----
-
-# Was ist das Problem?
-Ein Blick auf den Dachboden der Softwareentwicklung
-
----
-src: /pages/problem.md
----
-
----
-layout: section
----
-
-# Was kann man tun?
-Chiseled Images eilen zur Rettung
-
----
-src: /pages/chisieldToTheRescue.md
----
-
----
-layout: section
----
-
-# Was kann schiefgehen?
-Zu Risiken und Nebenwirkungen
-
----
-src: /pages/chisieldWhatCanGoWrong.md
----
----
-layout: section
----
-
-# Wie wäre es mit aufräumen?
-Nur ein gelöschtes Image ist ein sicheres Image
----
-src: /pages/cleanupYourRegistry.md
----
----
-layout: section
----
-# Fazit
-
----
-
-# Fazit
-- Alte Images sind wie alte Socken: Sie stinken und sollten regelmäßig gewechselt werden
-
-- syft & grype sind gute Tools um Schwachstellen in Images zu finden
-
-- Chiseled Images sind ein guter Weg um die Sicherheit und Performance von Containern zu verbessern
-
-- Aufräumen alter Images ist zusätzlich erforderlich
