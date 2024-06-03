@@ -6,7 +6,7 @@ image: /Announcement.jpg
 - Microsoft kündigt [Chiseled Containers](https://devblogs.microsoft.com/dotnet/announcing-dotnet-chiseled-containers/) als GA an.
 - Diese enthalten wesentlich weniger Abhängigkeiten und sind deshalb kleiner und sicherer
 - Vergleichbar mit [Google Distroless](https://github.com/GoogleContainerTools/distroless)
-- Werden aber vom upstream image provider (ubuntu) bereitgestellt
+- Werden aber vom Upstream Image Provider (ubuntu) bereitgestellt
 - Microsoft stellt [Chiseled Images](https://github.com/dotnet/dotnet-docker/blob/main/documentation/ubuntu-chiseled.md
 ) für die runtime und aspnet bereit. 
 

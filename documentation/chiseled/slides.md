@@ -40,11 +40,11 @@ image: /DockerHarbour.jpg
 
 - Ein Blick in die dunklen Ecken der Softwareentwicklung
 
-- Ein praktischer Leitfaden zu Sauberkeit und Hygiene im eigenen Container
+- Ein praktischer Leitfaden zur Sauberkeit und Hygiene im eigenen Container
 
-    - Was nicht da ist, muss nicht geputzt werden
+    - Was nicht drin ist, muss nicht geputzt werden
 
-    - Was nicht mehr da ist auch nicht
+    - Ein Image das nicht mehr da ist auch nicht
 
 - Aufgeräumt, kaputt. Und jetzt?
 

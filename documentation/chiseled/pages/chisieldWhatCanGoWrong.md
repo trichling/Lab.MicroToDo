@@ -84,8 +84,13 @@ File.WriteAllLines("myFile.txt", myText);
 
 <br/>
 
-## DO: in das Dateien im Benutzerprofil ablegen
+## DO: Dateien im Benutzerprofil ablegen
 ```csharp
 var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "myFile.txt");
 File.WriteAllLines(path, myText);
 ```
+---
+# Globalization / TZData
+
+https://github.com/dotnet/dotnet-docker/issues/5014
+https://github.com/dotnet/dotnet-docker/issues/5021

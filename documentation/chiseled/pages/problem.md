@@ -112,14 +112,14 @@ image: /Grype.png
 
 <v-clicks>
 
-- um das herauszufinden gibt es <a href="https://github.com/anchore/grype" target="_blank">grype</a>
+- Um das herauszufinden gibt es <a href="https://github.com/anchore/grype" target="_blank">grype</a>
 
 ```powershell
 grype thinkexception.azurecr.io/
     microtodo-frontendapi:dev-net8
 ```
 
-- und wie viel davon ist vom Betriebssystem mit Priorität High?
+- Wie viel davon ist vom Betriebssystem mit Priorität High?
 
 ```powershell
 grype thinkexception.azurecr.io/
@@ -129,7 +129,7 @@ grype thinkexception.azurecr.io/
     | measure 
 ```
 
-- Es sind <span v-click v-mark.red>3 Verwundbarkeiten</span> mit hoher dringlichkeit (bitte merken!)
+- Es sind <span v-click v-mark.red>3 Verwundbarkeiten</span> mit hoher Dringlichkeit (bitte merken!)
 
 </v-clicks>
 
