@@ -5,6 +5,9 @@
 
 # exclude deployment.yaml from feature overlays
 **/overlays/feature/**/deployment.yaml
+application/frontend/kubernetes/api/overlays/feature/ingress.yaml
+application/frontend/kubernetes/client/overlays/feature/ingress.yaml
+testing/aspnetapp/overlays/feature-withoutssl/ingress.yaml
 
 # User-specific files
 *.rsuser
@@ -399,5 +402,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-application/frontend/kubernetes/api/overlays/feature/ingress.yaml
-application/frontend/kubernetes/client/overlays/feature/ingress.yaml
+
