@@ -8,7 +8,8 @@
 application/frontend/kubernetes/api/overlays/feature/ingress.yaml
 application/frontend/kubernetes/client/overlays/feature/ingress.yaml
 testing/aspnetapp/overlays/feature-withoutssl/ingress.yaml
-
+testing/aspnetapp/overlays/feature/ingress.yaml
+testing/aspnetapp/overlays/feature-withoutssl/ingress.yaml
 # User-specific files
 *.rsuser
 *.suo
