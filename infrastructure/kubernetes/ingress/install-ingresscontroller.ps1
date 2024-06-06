@@ -1,29 +1,33 @@
 param (
     [Parameter(Mandatory)] [string] $Environment,
-    [Parameter(Mandatory)] [string] $Version
+    [Parameter(Mandatory)] [string] $Version,
+    [Parameter()] [string] $Location = "westeurope"
 )
 
 $prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
 
-$location = "westeurope"
 $application = "microtodo"
 $resourceGroupName = "rg-$application-$Environment"
 $clusterName = "aks-$application-$Environment-$Version"
-$mcResourceGroupName = "MC_" + $resourceGroupName + "_" + $clusterName + "_" + $location
+$mcResourceGroupName = "MC_" + $resourceGroupName + "_" + $clusterName + "_" + $Location
 $dnsLabel = "$application-$Environment-$Version"
+
+az aks get-credentials -n $clusterName -g $resourceGroupName --overwrite-existing  
 
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 
 kubectl create namespace ingress-nginx --dry-run=client -o yaml | kubectl apply -f -
 
-helm upgrade nginx-ingress ingress-nginx/ingress-nginx --install `
+helm upgrade nginx-ingress ingress-nginx/ingress-nginx `
+    --install `
     --namespace ingress-nginx `
-    --set controller.replicaCount=3 `
-    --set controller.service.externalTrafficPolicy=Local `
+    --set controller.replicaCount=1 `
     --set controller.nodeSelector."kubernetes\.io/os"=linux `
     --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux `
-    --set controller.admissionWebhooks.patch.nodeSelector."kubernetes\.io/os"=linux
+    --set controller.admissionWebhooks.patch.nodeSelector."kubernetes\.io/os"=linux `
+    --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path"=/healthz `
+    --set controller.service.externalTrafficPolicy=Local 
     # private load balancer
     # --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-resource-group"="$LOADBALANCER_RESOURCE_GROUP" `
     # --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-internal"="true" `

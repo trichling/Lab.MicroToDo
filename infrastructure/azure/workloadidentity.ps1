@@ -11,6 +11,8 @@ $managedIdentityName = "identity-$application-$Environment-$Version"
 $federatedIdentityName = "federatedidentity-$application-$Environment-$Version"
 $clusterName = "aks-$application-$Environment-$Version"
 
+az aks get-credentials -n $clusterName -g $resourceGroupName --overwrite-existing
+
 $managedIdentityClientId = $(az identity show --resource-group $resourceGroupName --name $managedIdentityName --query 'clientId' -otsv)
 $serviceAccountName = "api"
 $serviceAccountNamespace = "default"

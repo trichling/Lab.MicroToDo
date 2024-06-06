@@ -98,18 +98,42 @@ $managedIdentityName = "identity-$application-$Environment-$Version"
 $clusterName = "aks-$application-$Environment-$Version"
 
 # create subnet for cluster in vnet
-$clusterSubnetId = az network vnet subnet create `
+Write-Host "Check if subnet $subnetName exists in vnet $vnetName"
+$clusterSubnetId = az network vnet subnet show `
     --resource-group $resourceGroupName `
     --vnet-name $vnetName `
     --name $subnetName `
-    --address-prefixes $subnetAddressSpace `
     --query id -o tsv
 
+if (-not $clusterSubnetId) {
+    Write-Host "Creating subnet $subnetName in vnet $vnetName"
+    $clusterSubnetId = az network vnet subnet create `
+        --resource-group $resourceGroupName `
+        --vnet-name $vnetName `
+        --name $subnetName `
+        --address-prefixes $subnetAddressSpace `
+        --query id -o tsv
+}
+else {
+    Write-Host "Subnet $subnetName in vnet $vnetName already exists"
+}
+
 # create identity for the cluster
-$identityId = az identity create `
+Write-Host "Checking if identity $managedIdentityName exists"
+$identityId = az identity show `
     --resource-group $resourceGroupName `
     --name $managedIdentityName `
     --query id -o tsv
+
+if (-not $identityId) {
+    Write-Host "Creating identity $managedIdentityName"
+    $identityId = az identity create `
+        --resource-group $resourceGroupName `
+        --name $managedIdentityName `
+        --query id -o tsv
+} else {
+    Write-Host "Identity $managedIdentityName already exists"
+}
 
 # create cluster in subnet
 az aks create `
