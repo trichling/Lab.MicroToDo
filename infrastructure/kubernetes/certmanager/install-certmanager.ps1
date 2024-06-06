@@ -11,7 +11,6 @@ if ($IngressController -ne "nginx" -and $IngressController -ne "agic") {
 
 $prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
 
-$location = "westeurope"
 $application = "microtodo"
 $resourceGroupName = "rg-$application-$Environment"
 $clusterName = "aks-$application-$Environment-$Version"

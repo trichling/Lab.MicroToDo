@@ -1,16 +1,18 @@
 param (
     [Parameter(Mandatory)] [string] $Environment,
-    [Parameter(Mandatory)] [string] $Version
+    [Parameter(Mandatory)] [string] $Version,
+    [Parameter()] [string] $Location = "westeurope"
 )
 
 $prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
 
-$location = "westeurope"
 $application = "microtodo"
 $resourceGroupName = "rg-$application-$Environment"
 $clusterName = "aks-$application-$Environment-$Version"
-$mcResourceGroupName = "MC_" + $resourceGroupName + "_" + $clusterName + "_" + $location
+$mcResourceGroupName = "MC_" + $resourceGroupName + "_" + $clusterName + "_" + $Location
 $dnsLabel = "$application-$Environment-$Version"
+
+az aks get-credentials -n $clusterName -g $resourceGroupName --overwrite-existing  
 
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
