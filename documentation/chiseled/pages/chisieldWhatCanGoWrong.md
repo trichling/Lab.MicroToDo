@@ -10,6 +10,8 @@
 
 - nur die minimale Menge an Paketen, die für .NET-Apps benötigt werden
 
+- keine Codepages (ICU) und Zeitzonen (TZData)
+
 <br/>
 <br/>
 <br/>
@@ -90,7 +92,7 @@ var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.User
 File.WriteAllLines(path, myText);
 ```
 ---
-# Globalization / TZData
+# Globalisierung und Zeitzonen
 
 https://github.com/dotnet/dotnet-docker/issues/5014
 https://github.com/dotnet/dotnet-docker/issues/5021

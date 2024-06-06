@@ -125,8 +125,13 @@ Was ist eigentlich dieses scratch? [[1]](https://docs.docker.com/build/building/
 
 </v-click>
 <!--
+
 https://github.com/dotnet/dotnet-docker/blob/main/src/runtime/8.0/jammy-chiseled/arm64v8/Dockerfile
+
 https://github.com/dotnet/dotnet-docker/blob/main/src/runtime-deps/8.0/jammy-chiseled/arm64v8/Dockerfile
+
 https://discourse.ubuntu.com/t/container-images-that-rock-rocks-manifesto/32091
+
 https://github.com/canonical/rocks-toolbox
+
 -->
