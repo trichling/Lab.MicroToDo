@@ -19,12 +19,15 @@ helm repo update
 
 kubectl create namespace ingress-nginx --dry-run=client -o yaml | kubectl apply -f -
 
-helm install nginx-ingress ingress-nginx/ingress-nginx `
+helm upgrade nginx-ingress ingress-nginx/ingress-nginx `
+    --install `
     --namespace ingress-nginx `
-    --set controller.replicaCount=3 `
+    --set controller.replicaCount=1 `
     --set controller.nodeSelector."kubernetes\.io/os"=linux `
     --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux `
-    --set controller.admissionWebhooks.patch.nodeSelector."kubernetes\.io/os"=linux
+    --set controller.admissionWebhooks.patch.nodeSelector."kubernetes\.io/os"=linux `
+    --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path"=/healthz `
+    --set controller.service.externalTrafficPolicy=Local 
     # private load balancer
     # --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-resource-group"="$LOADBALANCER_RESOURCE_GROUP" `
     # --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-internal"="true" `
