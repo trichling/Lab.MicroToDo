@@ -1,8 +1,8 @@
-kind: StressChaos
+kind: PodChaos
 apiVersion: chaos-mesh.org/v1alpha1
 metadata:
   namespace: default
-  name: stress-cpu-microtodo-frontend-api 
+  name: podfault-podfailure-microtodo-frontend-api
 spec:
   selector:
     namespaces:
@@ -10,8 +10,5 @@ spec:
     labelSelectors:
       app: microtodo-frontend-api
   mode: all
-  stressors:
-    cpu:
-      workers: 4
-      load: 70
-  duration: 1m
+  action: pod-failure
+  duration: 5m

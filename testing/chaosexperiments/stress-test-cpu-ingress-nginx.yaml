@@ -1,0 +1,17 @@
+kind: StressChaos
+apiVersion: chaos-mesh.org/v1alpha1
+metadata:
+  namespace: ingress-nginx
+  name: stress-test-cpu-ingress-nginx
+spec:
+  selector:
+    namespaces:
+      - ingress-nginx
+    labelSelectors:
+      app.kubernetes.io/component: controller
+  mode: all
+  stressors:
+    cpu:
+      workers: 5
+      load: 100
+  duration: 5m

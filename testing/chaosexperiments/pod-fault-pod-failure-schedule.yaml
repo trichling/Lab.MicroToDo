@@ -1,0 +1,20 @@
+kind: Schedule
+apiVersion: chaos-mesh.org/v1alpha1
+metadata:
+  namespace: default
+  name: pod-fault-pod-faliure-schedule
+spec:
+  schedule: '* * * * *'
+  startingDeadlineSeconds: 5
+  concurrencyPolicy: Forbid
+  historyLimit: 1
+  type: PodChaos
+  podChaos:
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        app: microtodo-frontend-api
+    mode: all
+    action: pod-failure
+    duration: 10s

@@ -7,10 +7,7 @@ param (
 
 $prevPwd = $PWD; Set-Location -ErrorAction Stop -LiteralPath $PSScriptRoot
 
-$location = "westeurope"
 $application = "microtodo"
-$resourceGroupName = "rg-$application-$Environment"
-$clusterName = "aks-$application-$Environment-$Version"
 
 kubectl create namespace chaos-mesh --dry-run=client -o yaml | kubectl apply -f -
 
@@ -21,7 +18,7 @@ helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --set chaosDaemon.ru
 
 kubectl get pods --namespace chaos-mesh -l app.kubernetes.io/instance=chaos-mesh
 
-kubectl apply -f rbac.yaml
+kubectl apply -f rbac-default-manager.yaml
 
 # the token needs to be pasted into chaos dashboard under settings
 kubectl create token account-default-manager-zgfsm

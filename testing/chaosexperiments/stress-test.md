@@ -14,3 +14,11 @@ To see if the pod gets oomkilled, describe the pod. If the pod gets killed, the 
 
 stress-ng will only allocate the total memory given, as it will split it evenly across the workers. So having more workers does not yield to more memory stress
 
+
+# Mem Stress 
+Wird durch oomkill gelöst
+
+# CPU Stress
+Wird durch HPA gelöst
+
+# Network Delay

@@ -1,0 +1,46 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: Workflow
+metadata:
+  name: multi-chaos
+  namespace: default
+spec:
+  entry: entry
+  templates:
+    - name: entry
+      templateType: Serial
+      children:
+        - cpu-stress
+        - delay-frontend
+      deadline: 20s
+    - name: cpu-stress
+      templateType: StressChaos
+      deadline: 20s
+      stressChaos:
+        selector:
+          namespaces:
+            - default
+          labelSelectors:
+            app: microtodo-frontend-api
+        mode: all
+        stressors:
+          cpu:
+            load: 70
+            workers: 4
+    - name: delay-frontend
+      templateType: NetworkChaos
+      deadline: 10s
+      networkChaos:
+        action: delay
+        target:
+          selector:
+            namespaces:
+              - default
+            labelSelectors:
+              app: microtodo-frontend
+          mode: all
+        selector:
+          namespaces:
+            - default
+          labelSelectors:
+            app: microtodo-frontend
+        mode: all
