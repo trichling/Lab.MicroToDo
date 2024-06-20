@@ -144,6 +144,8 @@ layout: section
 # Chaos Experimente!!
 
 ---
+background: /Chaos.jpg
+---
 
 # Fazit
 
@@ -166,7 +168,7 @@ layout: section
 </v-clicks>
 
 ---
-background: /Chaos.jpg
+background: /ChaosFazit.jpg
 # some information about your slides, markdown enabled
 title: Chaos Engineering
 layout: cover
