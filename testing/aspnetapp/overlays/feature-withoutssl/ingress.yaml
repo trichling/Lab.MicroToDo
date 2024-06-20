@@ -1,0 +1,6 @@
+- op: remove
+  path: /spec/tls
+
+- op: replace
+  path: /spec/rules/0/host
+  value: "microtodo-dev-0.germanywestcentral.cloudapp.azure.com"
