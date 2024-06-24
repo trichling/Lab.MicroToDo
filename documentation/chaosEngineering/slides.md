@@ -11,7 +11,7 @@ layout: cover
 
 # Bring ein bisschen Chaos in die Ordnung!
 
-Chaos Engineering mit Chaos Mesh
+Chaos Engineering mit Chaos Mesh in Kubernetes
 ---
 layout: author
 ---
@@ -22,7 +22,7 @@ layout: author
 # Tobias Richling
 
 Teamleiter Digital Operations @ apetito AG
-Passionate about .NET, Docker, Kubernetes and Softwere Architecture
+Passionate about .NET, Docker, Kubernetes and Software Architecture
 
 <footer >
 
@@ -48,6 +48,8 @@ image: /Chaos.jpg
     - Schedules
     - Workflows
 
+- Dev, Stage, Prod?
+
 - Fazit und Ausblick
 
 ---
@@ -61,16 +63,22 @@ layout: image-left
 image: /Fallacies.jpg
 ---
 
-# Fallacies of distributed computing [[1]](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing)
+# Fallacies of distributed computing 
 
-1. The network is reliable.
-2. There is zero latency.
-3. Bandwidth is infinite.
-4. The network is secure.
-5. Topology never changes.
-6. There is one admin.
-7. Transport cost is zero.
-8. The network is homogeneous.
+1. The network is reliable. <span style="font-size: x-small">(Das Netzwerk ist ausfallsicher.)</span>
+2. There is zero latency. <span style="font-size: x-small">(Die Latenzzeit ist gleich null.)</span>
+3. Bandwidth is infinite. <span style="font-size: x-small">(Der Datendurchsatz ist unbegrenzt.)</span>
+4. The network is secure. <span style="font-size: x-small">(Das Netzwerk ist sicher.)</span>
+5. Topology never changes. <span style="font-size: x-small">(Die Netzwerktopologie ist stabil.)</span>
+6. There is one admin. <span style="font-size: x-small">(Es gibt nur einen Administrator.)</span>
+7. Transport cost is zero. <span style="font-size: x-small">(Der Datentransports kostet nichts.)</span>
+8. The network is <br/> homogeneous. <span style="font-size: x-small">(Das Netzwerk ist homogen.)</span>
+
+<p style="text-align: end">
+
+[Quelle: Wikipedia](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing)
+
+</p>
 
 ---
 layout: section
@@ -87,7 +95,6 @@ layout: quote
 [Quelle: Principle of chaos engineering](https://principlesofchaos.org/)
 
 
-
 ---
 
 # Prozess des Chaos Engineering
@@ -98,7 +105,7 @@ graph TD;
  
     A[Hypothese] === B[Verbesserung];
  
-    A === C[Experiement];
+    A === C[Experiment];
  
     B === D[Analyse];
  
@@ -152,7 +159,7 @@ image: /ChaosEngine.jpg
 - [Gremlin ](https://www.gremlin.com/)
     - CAAS (Chaos as a Service)
     - Cloud-Unabhängig
-- [Chaos Mesh](https://chaos-mesh.org/)
+- [Chaos Mesh](https://chaos-mesh.org/) / [Litmus](https://litmuschaos.io/)
     - Kostenlos
     - Open Source
 
@@ -160,24 +167,67 @@ image: /ChaosEngine.jpg
 
 # Chaos-Mesh
 
-- Chaos-Mesh is a cloud-native Chaos Engineering platform that orchestrates chaos on Kubernetes environments.
+<v-clicks>
 
-- Chaos-Mesh was accepted by the CNCF in July 2020.
+- Chaos-Mesh ist eine cloud-native Chaos Engineering Plattform, die Chaos in Kubernetes-Umgebungen orchestriert.
 
-- Chaos-Mesh reached the Incubating maturity level in February 2022.
+- Chaos-Mesh wurde im Juli 2020 von der CNCF akzeptiert.
 
-- It allows to inject faults to Kubernetes applications in order to test the resiliency of the system.
+- Chaos-Mesh erreichte im Februar 2022 den Reifegrad "Incubating".
 
-- It is easy to use, and it provides a web UI to configure and manage the chaos experiments.
+- Es ermöglicht das Injizieren von Fehlern in Kubernetes-Anwendungen, um die Widerstandsfähigkeit des Systems zu testen.
 
-- Chaos Experiments can be submitted as Kubernetes CRDs as well as via the Web UI.
+- Es ist einfach zu bedienen und bietet eine Web-Benutzeroberfläche zur Konfiguration und Verwaltung der Chaos-Experimente.
+
+- Chaos-Experimente können sowohl als Kubernetes CRDs als auch über die Web-Benutzeroberfläche eingereicht werden.
+
+</v-clicks>
 
 ---
 layout: section
 ---
 
-# Chaos Experimente!!
+# Chaos Experimente!
 
+---
+layout: section
+---
+
+# Dev, Stage, Prod
+Chaos Engineering in verschiedenen Umgebungen
+
+---
+layout: quote
+---
+
+# To guarantee both <span v-mark.red>authenticity</span> of the way in which the system is exercised and <span v-mark.red>relevance</span> to the current deployed system, Chaos strongly prefers to experiment directly on <span v-mark.red>production traffic</span>.
+
+[Quelle: Principle of chaos engineering](https://principlesofchaos.org/)
+
+---
+layout: quote
+---
+
+# Experimenting in production has the potential to cause unnecessary <span v-mark.red>customer pain</span>. [...], it is the responsibility and obligation of the Chaos Engineer to ensure the <span v-mark.red>fallout [...] are minimized</span> and contained.
+
+[Quelle: Principle of chaos engineering](https://principlesofchaos.org/)
+
+---
+# Ideen zum Umgang mit Chaos-Experimenten im Proudktivsystem
+
+<v-clicks>
+
+- Experimente zunächst in einer Testumgebung durchführen (klare Hypothese / Monitoring).
+
+- Klare Beschränkung auf eng eingegrenzte Bereich (Blast-Radius).
+
+- Klare Kommunikation innerhalb des Unterenhmens (interne Ankündigung).
+
+- Den Kunden ein Wartung ankündigen, in der es zu Einschränkugen kommen kann (nicht zu oft).
+
+- A/B Testing, Load Balancing auf einem parallelen System um nicht alle Kunden zu betreffen.
+
+</v-clicks>
 ---
 background: /Chaos.jpg
 ---
@@ -186,7 +236,7 @@ background: /Chaos.jpg
 
 <v-clicks>
 
-- Chaos Engineering leistet eine wichtigen Beitrag zur Entwicklung resilienter verteilter Systeme.
+- Chaos Engineering leistet einen wichtigen Beitrag zur Entwicklung resilienter verteilter Systeme.
 
 - Ohne gutes Monitoring und eine klare Hypothese sind Chaos Experimente wenig hilfreich.
 
