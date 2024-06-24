@@ -38,6 +38,8 @@ image: /Chaos.jpg
 ---
 # Agenda
 
+- Ja wieso denn bloß?
+
 - Was ist Chaos Engineering
 
 - Chaos Engineering mit Chaos Mesh
@@ -52,6 +54,28 @@ image: /Chaos.jpg
 layout: section
 ---
 
+# Ja wieso denn bloß?
+
+---
+layout: image-left
+image: /Fallacies.jpg
+---
+
+# Fallacies of distributed computing [[1]](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing)
+
+1. The network is reliable.
+2. There is zero latency.
+3. Bandwidth is infinite.
+4. The network is secure.
+5. Topology never changes.
+6. There is one admin.
+7. Transport cost is zero.
+8. The network is homogeneous.
+
+---
+layout: section
+---
+
 # Was ist Chaos Engineering
 
 ---
@@ -61,6 +85,8 @@ layout: quote
 # Chaos Engineering is the discipline of <span v-mark.red>experimenting</span> on a system in order to build <span v-mark.red>confidence</span> in the system’s capability to <span v-mark.red>withstand</span> turbulent conditions in production.
 
 [Quelle: Principle of chaos engineering](https://principlesofchaos.org/)
+
+
 
 ---
 
@@ -100,6 +126,15 @@ graph TD;
 ```
 </div>
 
+---
+layout: statement
+---
+
+# Welche Möglichkeiten gibt es denn, ein bisschen Chaos zu erzeugen?
+
+<v-click>
+Gibt es da auch was von der Stange?
+</v-click>
 
 ---
 layout: image-right
