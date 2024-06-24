@@ -14,7 +14,10 @@ kubectl create namespace chaos-mesh --dry-run=client -o yaml | kubectl apply -f 
 helm repo add chaos-mesh https://charts.chaos-mesh.org
 helm repo update chaos-mesh
 
-helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh --set chaosDaemon.runtime=containerd --set chaosDaemon.socketPath=/run/containerd/containerd.sock --version 2.6.2
+helm install chaos-mesh chaos-mesh/chaos-mesh -n=chaos-mesh `
+    --set chaosDaemon.runtime=containerd `
+    --set chaosDaemon.socketPath=/run/containerd/containerd.sock `
+    --version 2.6.2
 
 kubectl get pods --namespace chaos-mesh -l app.kubernetes.io/instance=chaos-mesh
 

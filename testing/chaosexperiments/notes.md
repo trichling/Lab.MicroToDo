@@ -1,16 +1,3 @@
-# Was ist Chaos engineering
-
-# Was braucht man
-- Eine Chaos-Engine
-- Monitoring!! Für alle Ebenen von Faults (mostly out of scope)
-- Automatisierung / einen Plan
-- Hypothese -> Experiement -> Analyse -> Verbesserung
-
-# Welche Chaos Engines gibt es?
-- Chaos Monkey
-- Azure Chaos Studio
-- Gremlin
-
 # Installation
 - See chaos dashboard (portforward)
 
@@ -22,11 +9,11 @@
 # Chaos Experiments 
 ## Via UI
 
-- Memory (OOMKill)
-- CPU (HPA)
-- Network Latency - Where to see this??
-- Network Loss - Where to see this??
-- High CPU in ingress-nginx - warte: ich sehe die pods nicht?
+- Memory (OOMKill) [stress-test-memory.yaml]
+- CPU (HPA) [stress-test-cpu.yaml]
+- Network Latency - Where to see this?? [network-delay.yaml]
+- Network Loss - Where to see this?? [network-loss.yaml]
+- High CPU in ingress-nginx - warte: ich sehe die pods nicht? [stress-test-cpu-ingress-nginx.yaml]
   => UI-Token nur auf namespace-ebene! 
 
 ## Via yaml
