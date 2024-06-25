@@ -1,0 +1,23 @@
+kind: Schedule
+apiVersion: chaos-mesh.org/v1alpha1
+metadata:
+  namespace: default
+  name: continous-memstress
+spec:
+  schedule: '* * * * *'
+  startingDeadlineSeconds: null
+  concurrencyPolicy: Forbid
+  historyLimit: 1
+  type: StressChaos
+  stressChaos:
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        app: microtodo-frontend-api
+    mode: all
+    stressors:
+      memory:
+        workers: 4
+        size: 1G
+    duration: 5m
