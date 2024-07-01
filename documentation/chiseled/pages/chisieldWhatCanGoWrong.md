@@ -35,6 +35,8 @@ CMD dotnet myapp.dll -- args
 <br/>
 <br/>
 
+<v-click>
+
 ## DO: "Exec" form
     
 ```dockerfile
@@ -43,11 +45,13 @@ ENTRYPOINT ["dotnet", "myapp.dll"]
 CMD ["dotnet", "myapp.dll", "--", "args"]
 ```
 
+</v-click>
+
 ---
 
 # wget, apt und Co
 ## DONT: wget in der final stage
-```dockerfile {7-8}
+```dockerfile {5-8}
 # build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build
 ...
@@ -58,9 +62,11 @@ RUN wget -O somefile.tar.gz <URL> \
    && tar -oxzf aspnetcore.tar.gz -C /somefile-extracted
 ```
 
+<v-click>
+
 ## DO: wget in der build stage 
 
-```dockerfile {3-4}
+```dockerfile {1-4}
 # build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build
 RUN wget -O somefile.tar.gz <URL> \
@@ -71,6 +77,8 @@ RUN wget -O somefile.tar.gz <URL> \
 FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-jammy-chiseled
 ...
 ```
+
+</v-click>
 
 ---
 
@@ -86,13 +94,31 @@ File.WriteAllLines("myFile.txt", myText);
 
 <br/>
 
+<v-click>
+
 ## DO: Dateien im Benutzerprofil ablegen
 ```csharp
 var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "myFile.txt");
 File.WriteAllLines(path, myText);
 ```
+
+</v-click>
+
 ---
+
+
 # Globalisierung und Zeitzonen
 
-https://github.com/dotnet/dotnet-docker/issues/5014
-https://github.com/dotnet/dotnet-docker/issues/5021
+- Z. B. Microsoft.SqlClient benötigt Globalization support für die Konvertierung von Unicode in andere Zeichensätze [1](https://github.com/dotnet/dotnet-docker/issues/5014)
+
+- Dies verursacht eine Abhängigkeit auf ICU APIs [2](https://learn.microsoft.com/en-us/windows/win32/intl/international-components-for-unicode--icu-) [3](https://icu.unicode.org/)
+
+- Für die Konvertierung von Datum und Uhrzeit werden auch Zeitonendaten benötigt (TZData) [4](https://www.iana.org/time-zones)
+
+# DO - In case you need it
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy-chiseled as base
+```
+
+Dockerfile [5](https://github.com/dotnet/dotnet-docker/blob/da5a045dc5dc64d18c8177fadb493da1c86982dc/src/runtime-deps/8.0/jammy-chiseled-extra/amd64/Dockerfile#L27-L39)

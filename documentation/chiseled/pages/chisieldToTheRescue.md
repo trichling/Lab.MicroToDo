@@ -87,51 +87,27 @@ Statt <span v-mark.circle.red="6" v-click="7">223 MB</span> nur noch <span style
 </v-click>
 
 ---
+layout: statement
+---
 
 # Wie machen die das?
 
-## So (runtime/8.0/jammy-chiseled):
-```dockerfile {3-4|1,6-7|none}
-ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
-
-# Installer image
-FROM arm64v8/buildpack-deps:jammy-curl AS installer 
-
-# .NET runtime image
-FROM $REPO:8.0.4-jammy-chiseled-arm64v8
-
-```
 <v-click>
 
-## Und so (runtime-deps/8.0/jammy-chiseled):
+# By starting from scratch!
 
-```dockerfile {1-3|5|7-9}
-# Use chisel tool from canonical to trim down image after installing stuff
-FROM arm64v8/golang:1.20 as chisel
-RUN go install github.com/canonical/chisel/cmd/chisel@v0.9.0 \
-
-# Cut down the image (using a conveinience tool around chisel named chisel-wrapper)
-
-FROM scratch
-# Copy over the minimum amount of things (i. e. the file system)
-COPY --from=chisel /rootfs /
-
-```
 </v-click>
 
-<v-click>
+<!--
 
 Was ist eigentlich dieses scratch? [[1]](https://docs.docker.com/build/building/base-images/) [[2]](https://www.howtogeek.com/devops/how-to-create-your-own-docker-base-images-from-scratch/)
 
-</v-click>
-<!--
+Jammy chiseled [[3]](https://github.com/dotnet/dotnet-docker/blob/main/src/runtime/8.0/jammy-chiseled/arm64v8/Dockerfile)
 
-https://github.com/dotnet/dotnet-docker/blob/main/src/runtime/8.0/jammy-chiseled/arm64v8/Dockerfile
+Jammy chiseled runtime deps [[4]](https://github.com/dotnet/dotnet-docker/blob/main/src/runtime-deps/8.0/jammy-chiseled/arm64v8/Dockerfile)
 
-https://github.com/dotnet/dotnet-docker/blob/main/src/runtime-deps/8.0/jammy-chiseled/arm64v8/Dockerfile
+Rocks manifesto [[5]](https://discourse.ubuntu.com/t/container-images-that-rock-rocks-manifesto/32091)
 
-https://discourse.ubuntu.com/t/container-images-that-rock-rocks-manifesto/32091
-
-https://github.com/canonical/rocks-toolbox
+Rocks toolbox [[6]](https://github.com/canonical/rocks-toolbox)
 
 -->

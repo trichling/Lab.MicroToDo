@@ -42,11 +42,11 @@ image: /DockerHarbour.jpg
 
 - Ein praktischer Leitfaden zur Sauberkeit und Hygiene im eigenen Container
 
-    - Was nicht drin ist, muss nicht geputzt werden
+    - Je weniger Geschirr man hat, desto weniger muss man spülen
 
-    - Ein Image das nicht mehr da ist auch nicht
+    - Wer das alte Service von Oma rausschmeißt, muss es gar nicht mehr spülen
 
-- Aufgeräumt, kaputt. Und jetzt?
+- Was wenn beim aufräumen was kaputt geht?
 
 ---
 layout: section
