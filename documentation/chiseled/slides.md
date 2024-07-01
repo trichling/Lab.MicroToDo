@@ -104,3 +104,23 @@ layout: section
 - Chiseled Images sind ein guter Weg, um die Sicherheit und Performance von Containern zu verbessern
 
 - Aufräumen alter Images ist zusätzlich erforderlich
+
+---
+background: /SqueezeContainer.jpg
+layout: cover
+---
+
+# Vielen Dank für die Aufmerksamkeit!
+
+## Habt ihr noch Fragen?
+
+<div absolute bottom-5 right-0 left-0 text-center fw300>
+
+<iconoir-twitter /> [@trichling](https://twitter.com/trichling)   · 
+
+<iconoir-github /> [trichling](https://github.com/trichling) ·  
+
+<iconoir-mail /> [tobias.richling@apetito.de](mailto:tobias.richling@apetito.de)
+
+
+</div>

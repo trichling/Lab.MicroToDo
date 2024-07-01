@@ -1,5 +1,6 @@
 ---
 layout: image-right
+image: /RetentionPolicy.jpg
 ---
 
 # Retention Policy
@@ -8,6 +9,7 @@ layout: image-right
 
 ---
 layout: image-right
+image: /AcrTasks.jpg
 ---
 
 # ACR Tasks
