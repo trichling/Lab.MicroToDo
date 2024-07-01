@@ -1,0 +1,1 @@
+docker build -f dockerfile.net80chi -t aspnet:80chi .

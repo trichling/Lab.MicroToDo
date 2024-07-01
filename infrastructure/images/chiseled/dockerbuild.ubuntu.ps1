@@ -1,0 +1,1 @@
+docker build -f dockerfile.ubuntu -t ubuntu:2410 .

@@ -1,0 +1,1 @@
+docker build -f dockerfile.alpine -t alpine:320 .
