@@ -68,13 +68,13 @@ image: /SqueezeContainer.jpg
 
 ## Syft
 
-Statt <span v-mark.circle.red="-1" v-click>94 Paketen</span> nur noch <span style="font-size: 27pt; color: red" v-click >9 Pakete</span>
+Statt 94 Paketen nur noch <span style="font-size: 27pt; color: red" v-click >9</span>
 
 <v-click at="3">
 
 ## Grype
 
-Statt <span v-mark.circle.red="3" v-click="4">3 High-Vulnerabilities</span>  nur noch <span style="font-size: 27pt; color: red" v-click="5">0 High-Vulnerabilities</span>
+Statt 3 High-Vulnerabilities nur noch <span style="font-size: 27pt; color: red" v-click="5">0</span>
 
 </v-click>
 
@@ -82,7 +82,7 @@ Statt <span v-mark.circle.red="3" v-click="4">3 High-Vulnerabilities</span>  nur
 
 ## Size
 
-Statt <span v-mark.circle.red="6" v-click="7">223 MB</span> nur noch <span style="font-size: 27pt; color: red" v-click="8">115 MB</span>
+Statt 223 MB nur noch <span style="font-size: 27pt; color: red" v-click="8">115 MB</span>
 
 </v-click>
 
@@ -94,9 +94,17 @@ layout: statement
 
 <v-click>
 
-# By starting from scratch!
+Was ist das kleinste Docker Base Image?
 
 </v-click>
+
+---
+layout: quote
+---
+
+# FROM scratch
+
+If you need to completely control the contents of your image, you can create your own base image from a Linux distribution of your choosing, or use the special `FROM scratch` base
 
 <!--
 

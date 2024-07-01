@@ -28,7 +28,7 @@ Passionate about .NET, Docker, Kubernetes and Software Architecture
 
 <iconoir-twitter /> [@trichling](https://twitter.com/trichling)
 <iconoir-github /> [trichling](https://github.com/trichling)
-<iconoir-mail /> [trichling@gmx.de](mailto:trichling@gmx.de)
+<iconoir-mail /> [tobias.richling@apetito.de](mailto:tobias.richling@apetito.de)
 
 </footer>
 
@@ -97,13 +97,20 @@ layout: section
 ---
 
 # Fazit
-- Alte Images sind wie alte Socken: Sie stinken und sollten regelmäßig gewechselt werden
 
-- syft & grype sind gute Tools, um Schwachstellen in Images zu finden
+<v-clicks>
 
-- Chiseled Images sind ein guter Weg, um die Sicherheit und Performance von Containern zu verbessern
+- Alte Images sind wie alte Socken: Sie stinken und sollten regelmäßig gewechselt werden.
 
-- Aufräumen alter Images ist zusätzlich erforderlich
+- syft & grype sind gute Tools, um Schwachstellen in Images zu finden (auch in CI / CD Pipelines).
+
+- Chiseled Images sind ein guter Weg, um die Sicherheit und Performance von Containern zu verbessern.
+
+- Aufräumen alter Images ist zusätzlich erforderlich.
+
+- Auch das permanente Überwachen der Container Registry / Kubernetes Cluster ist dringend zu empfehlen.
+
+</v-clicks>
 
 ---
 background: /SqueezeContainer.jpg

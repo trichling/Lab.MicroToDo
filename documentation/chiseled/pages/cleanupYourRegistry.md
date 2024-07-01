@@ -25,7 +25,7 @@ image: /AcrTasks.jpg
 layout: statement
 ---
 # ACR Purge
-- [Löscht Images / Manifests anhand bestimmter Filter](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-auto-purge)
+[Löscht Images / Manifests anhand bestimmter Filter](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-auto-purge)
 
 ---
 
