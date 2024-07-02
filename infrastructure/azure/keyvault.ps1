@@ -1,10 +1,10 @@
 param (
     [Parameter(Mandatory)] [string] $Environment,
-    [Parameter(Mandatory)] [string] $Version
+    [Parameter(Mandatory)] [string] $Version,
+    [Parameter()] [string] $Location = "westeurope"
 )
 
 # define names
-$location = "westeurope"
 $application = "microtodo"
 $resourceGroupName = "rg-$application-$Environment"
 $keyVaultName = "kv-$application-$Environment-$Version"
@@ -12,7 +12,7 @@ $managedIdentityName = "identity-$application-$Environment-$Version"
 
 az keyvault create `
     --resource-group $resourceGroupName `
-    --location $location `
+    --location $Location `
     --name $keyVaultName `
     --enable-rbac-authorization
 

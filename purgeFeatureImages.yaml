@@ -1,0 +1,4 @@
+steps: 
+  - cmd: acr purge --filter '^.*:^[F|f]eature[-0-9]*$' --ago 30d --untagged --keep 1 --dry-run
+    disableWorkingDirectoryOverride: true
+    timeout: 3600
