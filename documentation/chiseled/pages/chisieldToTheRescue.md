@@ -55,6 +55,7 @@ Docker Image bauen:
 docker build -f Dockerfile -t thinkexception.azurecr.io/microtodo-frontendapi:dev-net8-chiseled .\..
 ```
 
+Welche Images gibt es als Chiseled? [1](https://hub.docker.com/r/microsoft/dotnet-aspnet)
 
 <!-- 
 docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" | grep thinkexception.azurecr.io/microtodo-frontendap 

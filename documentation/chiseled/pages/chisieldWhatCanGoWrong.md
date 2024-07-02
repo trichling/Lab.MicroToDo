@@ -120,7 +120,7 @@ File.WriteAllLines(path, myText);
 # DO - In case you need it
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy-chiseled as base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy-chiseled-extra as base
 ```
 
 Dockerfile [5](https://github.com/dotnet/dotnet-docker/blob/da5a045dc5dc64d18c8177fadb493da1c86982dc/src/runtime-deps/8.0/jammy-chiseled-extra/amd64/Dockerfile#L27-L39)
