@@ -1,1 +1,1 @@
-docker build -f dockerfile.net80chi -t aspnet:80chi .
+docker build -f dockerfile.net80chi -t aspnet:dwx24chi .

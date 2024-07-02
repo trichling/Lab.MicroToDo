@@ -1,1 +1,1 @@
-docker build -f dockerfile.net80 -t aspnet:80 .
+docker build -f dockerfile.net80 -t aspnet:dwx24 .

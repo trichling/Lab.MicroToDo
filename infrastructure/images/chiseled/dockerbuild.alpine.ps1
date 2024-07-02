@@ -1,1 +1,1 @@
-docker build -f dockerfile.alpine -t alpine:320 .
+docker build -f dockerfile.alpine -t alpine:dwx24 .
