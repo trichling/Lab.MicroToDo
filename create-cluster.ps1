@@ -1,7 +1,7 @@
 $Location = "germanywestcentral"
 
-.\infrastructure\azure\base.ps1 dev $Location
-.\infrastructure\azure\loganalyticsworkspace.ps1 dev
+.\infrastructure\azure\base.ps1 dev 10.1.4.0/22 $Location 
+.\infrastructure\azure\loganalyticsworkspace.ps1 dev 
 .\infrastructure\azure\cluster.ps1 dev 0 10.1.4.0
 .\infrastructure\azure\cluster-enableworkloadidentity.ps1 dev 0
 .\infrastructure\azure\workloadidentity.ps1 dev 0

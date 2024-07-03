@@ -140,7 +140,7 @@ az aks create `
     --resource-group $resourceGroupName `
     --name $clusterName `
     --node-count 1 `
-    --node-vm-size "Standard_B2s" `
+    --node-vm-size "Standard_B4ms" `
     --network-plugin $NetworkPlugin `
     --vnet-subnet-id $clusterSubnetId `
     --auto-upgrade-channel "stable" `

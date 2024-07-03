@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0 as build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
 WORKDIR /application
 
 COPY Lab.MicroToDo.Frontend/Lab.MicroToDo.Frontend.csproj frontend/src/Lab.MicroToDo.Frontend/

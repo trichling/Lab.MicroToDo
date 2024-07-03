@@ -3,13 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
-# exclude deployment.yaml from feature overlays
+# exclude templated files
 **/overlays/feature/**/deployment.yaml
-application/frontend/kubernetes/api/overlays/feature/ingress.yaml
-application/frontend/kubernetes/client/overlays/feature/ingress.yaml
-testing/aspnetapp/overlays/feature-withoutssl/ingress.yaml
-testing/aspnetapp/overlays/feature/ingress.yaml
-testing/aspnetapp/overlays/feature-withoutssl/ingress.yaml
+**/overlays/feature/**/ingress.yaml
+**/build.ps1
+**/nginx.conf
+
 # User-specific files
 *.rsuser
 *.suo

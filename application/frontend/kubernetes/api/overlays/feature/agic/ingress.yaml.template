@@ -1,0 +1,36 @@
+- op: remove
+  path: /metadata/annotations/nginx.ingress.kubernetes.io~1rewrite-target
+
+- op: remove
+  path: /metadata/annotations/nginx.ingress.kubernetes.io~1ssl-redirect
+
+- op: remove
+  path: /metadata/annotations/nginx.ingress.kubernetes.io~1use-regex
+
+- op: add
+  path: /metadata/annotations/appgw.ingress.kubernetes.io~1backend-path-prefix
+  value: "/"
+
+- op: add
+  path: /metadata/annotations/appgw.ingress.kubernetes.io~1health-probe-path
+  value: "/swagger"
+
+- op: replace
+  path: /metadata/annotations/cert-manager.io~1issuer
+  value: "letsencrypt-staging-http-issuer"
+
+- op: replace
+  path: /spec/ingressClassName
+  value: "azure-application-gateway"
+
+- op: replace
+  path: /spec/tls/0/hosts/0
+  value: "microtodo-<Environment>-<Version>.westeurope.cloudapp.azure.com"
+
+- op: replace
+  path: /spec/rules/0/host
+  value: "microtodo-<Environment>-<Version>.westeurope.cloudapp.azure.com"
+
+- op: replace
+  path: /spec/rules/0/http/paths/0/path
+  value: "/api/*"
