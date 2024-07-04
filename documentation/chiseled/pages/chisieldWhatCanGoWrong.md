@@ -109,11 +109,11 @@ File.WriteAllLines(path, myText);
 
 # Globalisierung und Zeitzonen
 
-- Z. B. Microsoft.SqlClient benötigt Globalization support für die Konvertierung von Unicode in andere Zeichensätze [1](https://github.com/dotnet/dotnet-docker/issues/5014)
+- Z. B. Microsoft.SqlClient benötigt Globalization support für die Konvertierung von Unicode in andere Zeichensätze [[1]](https://github.com/dotnet/dotnet-docker/issues/5014)
 
-- Dies verursacht eine Abhängigkeit auf ICU APIs [2](https://learn.microsoft.com/en-us/windows/win32/intl/international-components-for-unicode--icu-) [3](https://icu.unicode.org/)
+- Dies verursacht eine Abhängigkeit auf ICU APIs [[2]](https://learn.microsoft.com/en-us/windows/win32/intl/international-components-for-unicode--icu-) [[3]](https://icu.unicode.org/)
 
-- Für die Konvertierung von Datum und Uhrzeit werden auch Zeitonendaten benötigt (TZData) [4](https://www.iana.org/time-zones)
+- Für die Konvertierung von Datum und Uhrzeit werden auch Zeitonendaten benötigt (TZData) [[4]](https://www.iana.org/time-zones)
 
 <v-click>
 
@@ -123,6 +123,6 @@ File.WriteAllLines(path, myText);
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy-chiseled-extra as base
 ```
 
-Dockerfile [5](https://github.com/dotnet/dotnet-docker/blob/da5a045dc5dc64d18c8177fadb493da1c86982dc/src/runtime-deps/8.0/jammy-chiseled-extra/amd64/Dockerfile#L27-L39)
+Dockerfile [[5]](https://github.com/dotnet/dotnet-docker/blob/da5a045dc5dc64d18c8177fadb493da1c86982dc/src/runtime-deps/8.0/jammy-chiseled-extra/amd64/Dockerfile#L27-L39)
 
 </v-click>

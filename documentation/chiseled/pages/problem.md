@@ -6,11 +6,7 @@ image: /DefenderForCloud.jpg
 
 <v-clicks>
 
-<a href="https://portal.azure.com/#view/Microsoft_Azure_Security/SecurityMenuBlade/~/EnvironmentSettings" target="_blank">
-
 - Microsoft Defender For Cloud (oder ähnliches) aktivieren
-
-</a>
 
 - Neue Images pushen
 

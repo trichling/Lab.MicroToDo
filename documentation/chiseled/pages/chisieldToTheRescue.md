@@ -107,8 +107,12 @@ layout: quote
 
 If you need to completely control the contents of your image, you can create your own base image from a Linux distribution of your choosing, or use the special `FROM scratch` base
 
-<!--
 
+[[1]](https://docs.docker.com/build/building/base-images/) 
+[[2]](https://github.com/dotnet/dotnet-docker/blob/main/src/runtime/8.0/jammy-chiseled/arm64v8/Dockerfile) 
+[[3]](https://github.com/dotnet/dotnet-docker/blob/main/src/runtime-deps/8.0/jammy-chiseled/arm64v8/Dockerfile) 
+
+<!--
 Was ist eigentlich dieses scratch? [[1]](https://docs.docker.com/build/building/base-images/) [[2]](https://www.howtogeek.com/devops/how-to-create-your-own-docker-base-images-from-scratch/)
 
 Jammy chiseled [[3]](https://github.com/dotnet/dotnet-docker/blob/main/src/runtime/8.0/jammy-chiseled/arm64v8/Dockerfile)
