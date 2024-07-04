@@ -119,7 +119,7 @@ graph TD;
 # Was braucht man für Chaos Engineering
 
 <div style="margin: auto;width: 50%">
-```mermaid { scale: 1.5 }
+```mermaid { scale: 1.4 }
 graph TD;
  
     A[Hypothese =<br/>Einen Plan] === B[Verbesserung = <br/> Ressourcen];
@@ -213,6 +213,7 @@ layout: quote
 [Quelle: Principle of chaos engineering](https://principlesofchaos.org/)
 
 ---
+
 # Ideen zum Umgang mit Chaos-Experimenten im Proudktivsystem
 
 <v-clicks>
@@ -228,8 +229,7 @@ layout: quote
 - A/B Testing, Load Balancing auf einem parallelen System um nicht alle Kunden zu betreffen.
 
 </v-clicks>
----
-background: /Chaos.jpg
+
 ---
 
 # Fazit
