@@ -23,7 +23,7 @@ function Get-ClusterSubnetCidr() {
     }
 }
 
-# We assume that we have a /24 subnet for the cluster and a /28 subnet for the pods.
+# We assume that we have a /28 subnet for the cluster nodes.
 # We leave 256 IPs for general infrastructure, and 3 * 256 IPs for the clusters.
 function Get-ClusterSubnetCidrForKubenet() {
     param (
@@ -42,7 +42,7 @@ function Get-ClusterSubnetCidrForKubenet() {
         throw "Cluster number $OrdinalClusterNumber is out of range"
     }
 
-    # add 2 to the third octet, because the first two ips are reserved for infrastructure
+    # add 1 to the third octet, because the first ip is reserved for infrastructure
     $thirdOctet = [int]$startIpParts[2] + 1 + $thirdOctetOffset
 
     return $startIpParts[0] + "." + $startIpParts[1] + "." + $thirdOctet + "." + $foruthOctet + "/28"       
