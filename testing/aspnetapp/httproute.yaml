@@ -1,0 +1,13 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+
+  name: aspnetapp-route
+spec:
+  parentRefs:
+  - name: gateway-01
+    namespace: alb-test-infra
+  rules:
+  - backendRefs:
+    - name: aspnetapp
+      port: 80
